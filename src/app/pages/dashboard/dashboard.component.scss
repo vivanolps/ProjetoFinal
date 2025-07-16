@@ -1,0 +1,101 @@
+// src/app/pages/dashboard/dashboard.component.scss
+
+@import '../../styles.scss'; // Importe os estilos globais
+
+.container {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+h1 {
+  color: $primary-color;
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.lead {
+  color: lighten($text-color, 10%);
+  font-size: 1.2rem;
+}
+
+h2 {
+  color: $text-color;
+  font-weight: 600;
+  font-size: 2rem;
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-card {
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    // Estilos para os cartões de atalho rápido
+    &.card-primary-bg-light {
+        background-color: $primary-color;
+        color: white;
+        .card-title { color: white; }
+        .card-text { color: rgba(255, 255, 255, 0.9); }
+    }
+    &.card-accent-bg {
+        background-color: $accent-color;
+        color: darken($accent-color, 40%);
+        .card-title { color: darken($accent-color, 50%); }
+        .card-text { color: darken($accent-color, 30%); }
+    }
+    &.card-secondary-bg {
+        background-color: $secondary-color;
+        color: $text-color;
+        .card-title { color: $primary-color; }
+        .card-text { color: $text-color; }
+    }
+    &.card-info-bg { // Nova classe, se quiser mais uma cor
+        background-color: lighten($accent-color, 5%); // Um tom mais claro do verde-água
+        color: darken($accent-color, 45%);
+        .card-title { color: darken($accent-color, 55%); }
+        .card-text { color: darken($accent-color, 35%); }
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .dashboard-icon { // Estilo para ícones, se for usar
+        font-size: 3rem;
+        color: $primary-color; // Cor padrão para ícones
+        margin-bottom: 1rem;
+
+        .card-primary-bg-light & { // Ícone branco se o card for primary-bg-light
+            color: white;
+        }
+    }
+
+    .btn-dashboard {
+        @extend .btn; // Herda estilos base de .btn
+        background-color: white;
+        color: $primary-color;
+        border: 1px solid $primary-color;
+        font-size: 0.9rem;
+        padding: 0.5rem 1.2rem;
+        border-radius: 1.5rem;
+
+        &:hover {
+            background-color: $primary-color;
+            color: white;
+        }
+    }
+}
+
+// Estilos para as caixas de estatísticas (reutilizando info-block)
+.info-block {
+    // Já definidos em home.component.scss, mas talvez precise de ajustes específicos aqui
+    // Verifique se os estilos de .hours-block e .welcome-block se aplicam bem
+    .display-4 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        color: inherit; // Herda a cor do bloco pai
+    }
+}

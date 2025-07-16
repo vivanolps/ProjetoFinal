@@ -1,1 +1,74 @@
-/* You can add global styles to this file, and also import other style files */
+// src/styles.scss
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap');
+
+$primary-color: #eabf9f;       // pêssego claro
+$secondary-color: #f6efe8;     // quase branco
+$text-color: #5c4a3f;          // marrom suave
+$accent-color: #c9ded1;        // verde água pastel
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: $secondary-color;
+  color: $text-color;
+  margin: 0; // Adicione isso para remover margens padrão do navegador
+  padding: 0; // Adicione isso para remover paddings padrão do navegador
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $primary-color;
+  font-weight: 600;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+
+  &:hover {
+    color: darken($primary-color, 10%);
+  }
+}
+
+// Estilos para botões, movidos para fora do 'a' e corrigidos
+button, .btn {
+  background-color: $primary-color; // Adicione uma cor de fundo padrão
+  color: white; // Cor do texto do botão
+  border: none; // Remover borda padrão do botão
+  cursor: pointer; // Indicar que é clicável
+  border-radius: 2rem; // bem arredondado
+  padding: 0.6rem 1.4rem;
+  transition: all 0.3s ease;
+  font-family: 'Montserrat', sans-serif; // Mantenha a fonte consistente
+  font-weight: 400; // Peso da fonte padrão para botões
+}
+
+button:hover, .btn:hover {
+  background-color: darken($primary-color, 10%); // Escurecer no hover
+  transform: translateY(-2px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.btn-outline-dark { 
+    color: $text-color;
+    border-color: $text-color;
+
+    &:hover {
+        background-color: $primary-color;
+        color: white;
+        border-color: $primary-color;
+    }
+}
+
+// Animações
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

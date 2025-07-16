@@ -1,0 +1,52 @@
+// src/app/pages/aluno/aluno.component.scss
+
+@import '../../../styles.scss'; // Importe os estilos globais para usar as variáveis
+
+.container {
+  // Ajustes de espaçamento ou alinhamento se precisar
+}
+
+h1 {
+  color: $primary-color; // Garante que o H1 da página siga a paleta
+  margin-bottom: 2rem;
+}
+
+.card {
+  border-radius: 0.75rem; // Arredondar as bordas dos cards
+  overflow: hidden; // Garante que o conteúdo não vaze em bordas arredondadas
+  // Adicione a transição para efeitos de hover nos cards
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &.card-primary-bg { // Classe para o card com primary-color
+    background-color: $secondary-color;
+    border: 1px solid lighten($text-color, 30%); // Borda suave
+    color: $text-color; // Texto interno do card
+  }
+
+  &.card-accent-bg { // Classe para o card com accent-color
+    background-color: $accent-color;
+    border: 1px solid lighten($accent-color, 10%); // Borda suave
+    color: darken($accent-color, 40%); // Cor do texto mais escura para contraste
+  }
+
+  &:hover {
+    transform: translateY(-5px); // Efeito de elevação no hover
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); // Sombra mais proeminente
+  }
+
+  .card-title {
+    color: $primary-color; // Título do card com a cor primária
+    font-weight: 600;
+  }
+
+  .btn-outline-dark { // Ajusta a cor do botão outline para sua paleta
+    color: $text-color;
+    border-color: $text-color;
+
+    &:hover {
+      background-color: $primary-color;
+      color: white; // Cor do texto do botão no hover
+      border-color: $primary-color;
+    }
+  }
+}

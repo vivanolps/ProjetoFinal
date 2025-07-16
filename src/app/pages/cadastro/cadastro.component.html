@@ -1,0 +1,37 @@
+<div class="container py-5 fade-in">
+    <h1 class="mb-4 text-center">Cadastro de Interesse</h1>
+    <form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="nome" class="form-label">Nome completo</label>
+            <input type="text" class="form-control" id="nome" formControlName="nome" placeholder="Seu nome">
+            <div *ngIf="cadastroForm.get('nome')?.invalid && (cadastroForm.get('nome')?.dirty || cadastroForm.get('nome')?.touched)" class="text-danger mt-1">
+                Nome é obrigatório.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="seu@email.com">
+            <div *ngIf="cadastroForm.get('email')?.invalid && (cadastroForm.get('email')?.dirty || cadastroForm.get('email')?.touched)" class="text-danger mt-1">
+                <div *ngIf="cadastroForm.get('email')?.errors?.['required']">E-mail é obrigatório.</div>
+                <div *ngIf="cadastroForm.get('email')?.errors?.['email']">E-mail inválido.</div>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="telefone" class="form-label">Telefone</label>
+            <input type="tel" class="form-control" id="telefone" formControlName="telefone" placeholder="(XX) XXXXX-XXXX">
+            <div *ngIf="cadastroForm.get('telefone')?.invalid && (cadastroForm.get('telefone')?.dirty || cadastroForm.get('telefone')?.touched)" class="text-danger mt-1">
+                Formato de telefone inválido.
+            </div>
+        </div>
+        <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="lgpdConsent" formControlName="lgpdConsent">
+            <label class="form-check-label" for="lgpdConsent">
+                Eu concordo com a <a routerLink="/politica-privacidade" class="text-decoration-underline privacy-link">Política de Privacidade</a> e autorizo o contato.
+            </label>
+            <div *ngIf="cadastroForm.get('lgpdConsent')?.invalid && (cadastroForm.get('lgpdConsent')?.dirty || cadastroForm.get('lgpdConsent')?.touched)" class="text-danger mt-1">
+                Você deve aceitar a política de privacidade.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-lg btn-submit" [disabled]="cadastroForm.invalid">Enviar</button>
+    </form>
+</div>

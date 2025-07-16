@@ -1,0 +1,92 @@
+// src/app/pages/curso/curso.component.scss
+
+@import '../../styles.scss'; // Importe os estilos globais para usar as variáveis
+
+.container {
+    // Adicione espaçamento extra se desejar
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+h1 {
+    color: $primary-color; // Garante a cor do título principal
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.lead {
+    color: lighten($text-color, 10%); // Cor para o texto de lead
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.card {
+    border-radius: 0.75rem; // Arredondar as bordas dos cards
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; // Efeito de transição
+
+    &:hover {
+        transform: translateY(-5px); // Efeito de elevação no hover
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18); // Sombra mais proeminente
+    }
+
+    .card-body {
+        padding: 1.8rem; // Ajuste o padding interno do card
+    }
+
+    .card-title {
+        color: $primary-color; // Título do card com a cor primária
+        font-weight: 600;
+        margin-bottom: 1rem; // Espaçamento abaixo do título
+    }
+
+    .card-text {
+        color: $text-color; // Cor do texto do card
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
+
+    // Classes específicas para o fundo dos cards
+    &.card-secondary-bg {
+        background-color: $secondary-color;
+        color: $text-color; // Cor do texto principal
+        border: 1px solid lighten($text-color, 30%); // Borda suave
+    }
+
+    &.card-primary-bg-light { // Este card usa primary-color como background
+        background-color: $primary-color;
+        color: white; // Texto branco para contraste
+        border: 1px solid darken($primary-color, 5%); // Borda sutil
+
+        .card-title {
+            color: white; // Título também branco
+        }
+        .card-text {
+            color: rgba(255, 255, 255, 0.9); // Texto com transparência para ler melhor
+        }
+    }
+
+    &.card-accent-bg {
+        background-color: $accent-color;
+        color: darken($accent-color, 40%); // Texto escuro para contraste
+        border: 1px solid lighten($accent-color, 10%); // Borda suave
+
+        .card-title {
+            color: darken($accent-color, 50%); // Título mais escuro
+        }
+    }
+}
+
+// Estilo para o botão "Quero me inscrever"
+.btn-inscricao {
+    @extend .btn; // Herda estilos base de .btn definido em styles.scss
+    background-color: $primary-color;
+    color: white;
+    font-size: 1.2rem;
+    padding: 0.8rem 2.5rem;
+    margin-top: 2rem; // Espaçamento acima do botão
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+    }
+}

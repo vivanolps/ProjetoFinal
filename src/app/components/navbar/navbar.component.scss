@@ -1,0 +1,70 @@
+@import '../../../styles.scss';
+
+.navbar {
+  background-color: $secondary-color;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  padding: 0.8rem 1rem;
+
+  .navbar-brand {
+    font-weight: 600;
+    color: $text-color;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: darken($text-color, 15%);
+      transform: scale(1.02);
+    }
+
+    i { /* Estilo do ícone ao lado do logo */
+      color: $primary-color;
+    }
+  }
+
+  .nav-link {
+    color: $text-color;
+    font-weight: 500;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: $primary-color;
+      background-color: rgba($primary-color, 0.1);
+    }
+
+    &.active {
+      color: $primary-color;
+      font-weight: 600;
+      background-color: rgba($primary-color, 0.05);
+    }
+
+    i { /* Espaçamento entre ícone e texto */
+      margin-right: 8px;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  /* Efeito ao rolar a página */
+.navbar-scrolled {
+    background-color: white !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  
+    .navbar-brand,
+    .nav-link {
+      color: #5c4a3f !important;
+    }
+  
+    .nav-link:hover {
+      color: darken(#5c4a3f, 10%) !important;
+    }
+  }
+}

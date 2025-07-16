@@ -1,0 +1,51 @@
+// src/app/pages/cadastro/cadastro.component.scss
+
+@import '../../styles.scss'; // Importe os estilos globais para usar as variáveis
+
+.container {
+  background-color: white; // Fundo branco para o container do formulário
+  border-radius: 0.75rem;
+  padding: 2.5rem; // Espaçamento interno
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08); // Sombra sutil
+  transition: all 0.3s ease; // Transição para efeitos
+  max-width: 600px; // Manter a largura máxima definida no HTML
+
+  &:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12); // Sombra mais proeminente no hover
+  }
+}
+
+h1 {
+    color: $primary-color; // Garante a cor do título
+    margin-bottom: 2rem;
+}
+
+.form-label {
+    color: $text-color; // Cor dos rótulos
+    font-weight: 500;
+}
+
+.form-control {
+    border-color: lighten($text-color, 30%); // Borda mais suave
+    &:focus {
+        border-color: $primary-color;
+        box-shadow: 0 0 0 0.25rem rgba($primary-color, 0.25);
+    }
+}
+
+.btn-submit { // Nova classe para o botão de enviar
+    background-color: $primary-color;
+    color: white; // Cor do texto do botão
+    border: none; // Sem borda
+    border-radius: 2rem; // Mantém o arredondamento
+    padding: 0.8rem 2rem; // Mais padding para um botão LG
+    font-size: 1.1rem; // Fonte um pouco maior
+    transition: all 0.3s ease;
+    width: 100%; // Botão ocupa a largura total do formulário
+
+    &:hover {
+        background-color: darken($primary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    }
+}

@@ -1,0 +1,47 @@
+<div class="container py-5 fade-in">
+    <h1 class="mb-4 text-center">Dashboard Administrativo</h1>
+    <p class="lead text-center">Bem-vindo(a), {{ adminName }}!</p>
+
+    <hr class="my-5">
+
+    <h2 class="mb-4">Ações Rápidas</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-3" *ngFor="let link of quickLinks">
+            <div class="card h-100 shadow-sm border-0 dashboard-card" [class]="link.bgColorClass">
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{ link.title }}</h5>
+                    <p class="card-text">{{ link.description }}</p>
+                    <a [routerLink]="link.routerLink" class="btn btn-sm btn-dashboard mt-3">Acessar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <h2 class="mb-4">Visão Geral</h2>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 info-block hours-block">
+                <div class="card-body text-center">
+                    <h3>Total de Alunos</h3>
+                    <p class="display-4">125</p> </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 info-block welcome-block">
+                <div class="card-body text-center">
+                    <h3>Cursos Ativos</h3>
+                    <p class="display-4">3</p> </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm border-0 info-block card-primary-bg-light">
+                <div class="card-body text-center">
+                    <h3>Novas Inscrições (mês)</h3>
+                    <p class="display-4">15</p> </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
