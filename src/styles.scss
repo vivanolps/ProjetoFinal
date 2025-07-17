@@ -11,8 +11,8 @@ body {
   font-family: 'Montserrat', sans-serif;
   background-color: $secondary-color;
   color: $text-color;
-  margin: 0; // Adicione isso para remover margens padrão do navegador
-  padding: 0; // Adicione isso para remover paddings padrão do navegador
+  margin: 0;
+  padding: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -29,37 +29,37 @@ a {
   }
 }
 
-// Estilos para botões, movidos para fora do 'a' e corrigidos
+
 button, .btn {
-  background-color: $primary-color; // Adicione uma cor de fundo padrão
-  color: white; // Cor do texto do botão
-  border: none; // Remover borda padrão do botão
-  cursor: pointer; // Indicar que é clicável
-  border-radius: 2rem; // bem arredondado
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 2rem;
   padding: 0.6rem 1.4rem;
   transition: all 0.3s ease;
-  font-family: 'Montserrat', sans-serif; // Mantenha a fonte consistente
-  font-weight: 400; // Peso da fonte padrão para botões
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
 }
 
 button:hover, .btn:hover {
-  background-color: darken($primary-color, 10%); // Escurecer no hover
+  background-color: darken($primary-color, 10%);
   transform: translateY(-2px);
   box-shadow: 0 8px 15px rgba(0,0,0,0.1);
 }
 
 .btn-outline-dark { 
-    color: $text-color;
-    border-color: $text-color;
+  color: $text-color;
+  border-color: $text-color;
 
-    &:hover {
-        background-color: $primary-color;
-        color: white;
-        border-color: $primary-color;
-    }
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    border-color: $primary-color;
+  }
 }
 
-// Animações
+
 .fade-in {
   opacity: 0;
   transform: translateY(20px);

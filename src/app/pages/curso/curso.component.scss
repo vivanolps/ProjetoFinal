@@ -1,92 +1,191 @@
 // src/app/pages/curso/curso.component.scss
 
-@import '../../styles.scss'; // Importe os estilos globais para usar as variáveis
+@use "sass:color";
+@import '../../../styles.scss';
 
 .container {
-    // Adicione espaçamento extra se desejar
-    padding-top: 3rem;
-    padding-bottom: 3rem;
+    background-color: $secondary-color;
+    min-height: calc(100vh - 120px);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
 }
 
-h1 {
-    color: $primary-color; // Garante a cor do título principal
-    font-size: 2.8rem;
-    margin-bottom: 0.5rem;
+.page-title {
+    color: $primary-color;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    @media (max-width: 768px) {
+        font-size: 2.5rem;
+    }
 }
 
-.lead {
-    color: lighten($text-color, 10%); // Cor para o texto de lead
-    font-size: 1.2rem;
+.page-description {
+    color: $text-color;
+    font-size: 1.25rem;
     margin-bottom: 2rem;
+    @media (max-width: 768px) {
+        font-size: 1.1rem;
+    }
 }
 
-.card {
-    border-radius: 0.75rem; // Arredondar as bordas dos cards
+/* Estilos para o Carrossel Customizado */
+.course-carousel-wrapper {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; // Efeito de transição
+    border-radius: 1.5rem;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 2rem;
+}
 
-    &:hover {
-        transform: translateY(-5px); // Efeito de elevação no hover
-        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18); // Sombra mais proeminente
+.course-carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.course-card {
+    flex: 0 0 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center; // Centraliza o texto e elementos inline/inline-block
+    padding: 2rem;
+
+    .card-image {
+        width: 100%;
+        max-height: 250px;
+        object-fit: cover;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     }
 
-    .card-body {
-        padding: 1.8rem; // Ajuste o padding interno do card
+    .card-content {
+        // Garantindo que o conteúdo interno do card esteja centralizado
+        display: flex; // Transforma o contêiner de conteúdo em flex
+        flex-direction: column; // Itens um abaixo do outro
+        align-items: center; // Centraliza horizontalmente os itens flex
+        justify-content: center; // Centraliza verticalmente (se houver espaço)
+
+        h3.card-title {
+            color: $primary-color;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-align: center; // Garante que o texto do título esteja centralizado
+        }
+        p.card-description {
+            color: $text-color;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            text-align: center; // Garante que o texto da descrição esteja centralizado
+        }
     }
 
-    .card-title {
-        color: $primary-color; // Título do card com a cor primária
-        font-weight: 600;
-        margin-bottom: 1rem; // Espaçamento abaixo do título
-    }
-
-    .card-text {
-        color: $text-color; // Cor do texto do card
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
-
-    // Classes específicas para o fundo dos cards
-    &.card-secondary-bg {
-        background-color: $secondary-color;
-        color: $text-color; // Cor do texto principal
-        border: 1px solid lighten($text-color, 30%); // Borda suave
-    }
-
-    &.card-primary-bg-light { // Este card usa primary-color como background
+    .btn-primary-custom {
         background-color: $primary-color;
-        color: white; // Texto branco para contraste
-        border: 1px solid darken($primary-color, 5%); // Borda sutil
+        color: white;
+        border: none;
+        padding: 0.8rem 2.5rem;
+        border-radius: 2rem;
+        font-size: 1.1rem;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
 
-        .card-title {
-            color: white; // Título também branco
-        }
-        .card-text {
-            color: rgba(255, 255, 255, 0.9); // Texto com transparência para ler melhor
-        }
-    }
-
-    &.card-accent-bg {
-        background-color: $accent-color;
-        color: darken($accent-color, 40%); // Texto escuro para contraste
-        border: 1px solid lighten($accent-color, 10%); // Borda suave
-
-        .card-title {
-            color: darken($accent-color, 50%); // Título mais escuro
+        &:hover {
+            background-color: color.adjust($primary-color, $lightness: -10%);
+            transform: translateY(-2px);
         }
     }
 }
 
-// Estilo para o botão "Quero me inscrever"
+/* Estilos para os botões de controle do carrossel */
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 1rem;
+    z-index: 10;
+
+    .btn-carousel-control {
+        background-color: rgba($primary-color, 0.8);
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+        &:hover {
+            background-color: $primary-color;
+            transform: scale(1.1);
+        }
+    }
+}
+
+/* Estilos para os indicadores (pontos) */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+
+    span {
+        display: block;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background-color: rgba($text-color, 0.4);
+        margin: 0 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+
+        &.active {
+            background-color: $primary-color;
+            transform: scale(1.2);
+        }
+
+        &:hover {
+            background-color: rgba($text-color, 0.7);
+        }
+    }
+}
+
+
 .btn-inscricao {
-    @extend .btn; // Herda estilos base de .btn definido em styles.scss
+    @extend .btn;
     background-color: $primary-color;
     color: white;
     font-size: 1.2rem;
     padding: 0.8rem 2.5rem;
-    margin-top: 2rem; // Espaçamento acima do botão
-
+    border-radius: 2rem;
     &:hover {
-        background-color: darken($primary-color, 10%);
+        background-color: color.adjust($primary-color, $lightness: -10%);
     }
 }
+
+/* Animações de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.fade-in-delay-1 { animation-delay: 0.2s; }
+.fade-in-delay-2 { animation-delay: 0.4s; }

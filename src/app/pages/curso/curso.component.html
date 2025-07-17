@@ -1,32 +1,40 @@
-<div class="container py-5 fade-in"> <div class="text-center mb-5">
-    <h1>Nosso Curso</h1>
-    <p class="lead">Conheça os módulos que vão transformar sua carreira.</p>
+<div class="container py-5 fade-in">
+  <div class="text-center mb-5">
+      <h1 class="page-title">Nosso Curso</h1>
+      <p class="page-description lead">Conheça os módulos que vão transformar sua carreira.</p>
   </div>
 
-  <div class="row g-4">
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 card-secondary-bg"> <div class="card-body">
-          <h5 class="card-title">Estética Facial</h5>
-          <p class="card-text">Aprenda limpeza de pele, peelings e massagens faciais para rejuvenescimento.</p>
-        </div>
+  <div class="course-carousel-wrapper fade-in fade-in-delay-1">
+      <div class="course-carousel" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
+          <div
+              class="course-card"
+              *ngFor="let curso of cursos; let i = index"
+              [class.active]="i === currentIndex"
+          >
+              <img [src]="curso.imagem" [alt]="curso.titulo" class="card-image"/>
+              <div class="card-content">
+                  <h3 class="card-title">{{ curso.titulo }}</h3>
+                  <p class="card-description">{{ curso.descricao }}</p>
+                  <button class="btn btn-primary-custom" routerLink="/cadastro">Quero me inscrever</button>
+              </div>
+          </div>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 card-primary-bg-light"> <div class="card-body">
-          <h5 class="card-title">Estética Corporal</h5>
-          <p class="card-text">Técnicas de drenagem linfática, massagem modeladora e cuidados específicos.</p>
-        </div>
+
+      <div class="carousel-controls">
+          <button (click)="prevCourse()" class="btn-carousel-control prev-btn">&#10094;</button>
+          <button (click)="nextCourse()" class="btn-carousel-control next-btn">&#10095;</button>
       </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card h-100 shadow-sm border-0 card-accent-bg"> <div class="card-body">
-          <h5 class="card-title">Gestão & Empreendedorismo</h5>
-          <p class="card-text">Como abrir seu próprio negócio, marketing pessoal e fidelização de clientes.</p>
-        </div>
+
+      <div class="carousel-dots">
+          <span
+              *ngFor="let curso of cursos; let i = index"
+              [class.active]="i === currentIndex"
+              (click)="currentIndex = i"
+          ></span>
       </div>
-    </div>
   </div>
 
-  <div class="text-center mt-5">
-    <a routerLink="/cadastro" class="btn btn-lg btn-inscricao">Quero me inscrever</a> </div>
+  <div class="text-center mt-5 fade-in fade-in-delay-2">
+      <a routerLink="/cadastro" class="btn btn-lg btn-inscricao">Quero me inscrever agora!</a>
+  </div>
 </div>
