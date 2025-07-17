@@ -39,35 +39,50 @@
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
     background-color: white;
     padding: 2rem;
+    display: flex; // Adicione flexbox para centralizar o carousel-inner se ele não ocupar 100%
+    justify-content: center; // Centraliza horizontalmente
+    align-items: center; // Centraliza verticalmente
 }
 
 .course-carousel {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 100%; // Garante que o carousel ocupe toda a largura disponível
 }
 
 .course-card {
     flex: 0 0 100%;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 600px; // Isso deve estar dentro do card, não do wrapper
+    margin: 0 auto; // Centraliza o próprio card dentro do seu slot
     text-align: center; // Centraliza o texto e elementos inline/inline-block
     padding: 2rem;
+    // Removi as propriedades display: flex, flex-direction, etc. de .card-content
+    // para usar text-align: center no .course-card diretamente
+    display: flex; // Torna o card flexível
+    flex-direction: column; // Coloca os itens em coluna
+    align-items: center; // Centraliza horizontalmente os itens flex
+    justify-content: center; // Centraliza verticalmente (se houver espaço)
+}
 
     .card-image {
-        width: 100%;
-        max-height: 250px;
-        object-fit: cover;
-        border-radius: 1rem;
+        width: 100px; /* Tamanho fixo para o ícone */
+        height: 100px; /* Tamanho fixo para o ícone */
+        object-fit: contain; // Para garantir que a imagem não seja cortada e se ajuste.
+                            // Se as imagens são ícones, 'contain' é melhor.
+                            // Se forem fotos maiores, 'cover' pode ser preferível, mas pode cortar.
+        border-radius: 1rem; // Mantenha se quiser bordas arredondadas para os ícones
         margin-bottom: 1.5rem;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        // Removi box-shadow aqui, ícones geralmente não precisam.
+        // display: block; // Já é display flex no pai, então não precisa mais de block
+        // margin-left: auto; // Já é align-items: center no pai, não precisa mais
+        // margin-right: auto; // Já é align-items: center no pai, não precisa mais
     }
 
     .card-content {
-        // Garantindo que o conteúdo interno do card esteja centralizado
-        display: flex; // Transforma o contêiner de conteúdo em flex
-        flex-direction: column; // Itens um abaixo do outro
-        align-items: center; // Centraliza horizontalmente os itens flex
-        justify-content: center; // Centraliza verticalmente (se houver espaço)
+        // Assegure-se de que nenhum estilo aqui sobreponha o text-align: center
+        // do .course-card ou o align-items: center do flexbox do .course-card
+        width: 100%; // Garante que o card-content ocupe a largura total para o texto
+    }
 
         h3.card-title {
             color: $primary-color;
@@ -83,7 +98,7 @@
             margin-bottom: 1.5rem;
             text-align: center; // Garante que o texto da descrição esteja centralizado
         }
-    }
+    
 
     .btn-primary-custom {
         background-color: $primary-color;
@@ -94,14 +109,14 @@
         font-size: 1.1rem;
         transition: background-color 0.3s ease, transform 0.2s ease;
         text-decoration: none;
-        display: inline-block;
+        display: inline-block; // Para que seja centralizado por text-align: center;
 
         &:hover {
             background-color: color.adjust($primary-color, $lightness: -10%);
             transform: translateY(-2px);
         }
     }
-}
+
 
 /* Estilos para os botões de controle do carrossel */
 .carousel-controls {
@@ -162,7 +177,6 @@
         }
     }
 }
-
 
 .btn-inscricao {
     @extend .btn;
