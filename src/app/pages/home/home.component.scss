@@ -1,6 +1,7 @@
 // src/app/pages/home/home.component.scss
 
-@import '../../../styles.scss'; // Importe os estilos globais para usar as variáveis
+@use "sass:color"; 
+@import '../../../styles.scss'; 
 
 .container.py-5 {
     padding-top: 4rem !important; // Ajuste o padding superior
@@ -28,14 +29,13 @@ h1 {
 }
 
 .lead {
-    color: lighten($text-color, 10%); // Cor para o texto de lead
+    color: color.adjust($text-color, $lightness: 10%); // Usando color.adjust
     font-size: 1.3rem;
     margin-bottom: 2rem;
 }
 
 // Botão "Ver Curso"
 .btn-outline-dark { // Já definido em styles.scss, só garantir que se encaixa bem aqui
-    // Pode adicionar estilos específicos se precisar sobrescrever o global
     color: $text-color;
     border-color: $text-color;
     &:hover {
@@ -56,7 +56,7 @@ h1 {
         margin-bottom: 0.5rem;
     }
     p {
-        color: lighten($text-color, 15%);
+        color: color.adjust($text-color, $lightness: 15%); // Usando color.adjust
         font-size: 1.1rem;
     }
     // Botão "Quero me cadastrar"
@@ -69,7 +69,7 @@ h1 {
         padding: 0.7rem 2rem;
         border-radius: 2rem; // Mais arredondado
         &:hover {
-            background-color: darken($primary-color, 10%);
+            background-color: color.adjust($primary-color, $lightness: -10%); // Usando color.adjust
         }
     }
 }
@@ -101,9 +101,9 @@ h1 {
 
     &.welcome-block {
         background-color: $accent-color;
-        color: darken($accent-color, 40%); // Cor do texto mais escura para contraste
-        h3 { color: darken($accent-color, 50%); } // Título mais escuro
-        p { color: darken($accent-color, 30%); }
+        color: color.adjust($accent-color, $lightness: -40%); // Usando color.adjust
+        h3 { color: color.adjust($accent-color, $lightness: -50%); } // Usando color.adjust
+        p { color: color.adjust($accent-color, $lightness: -30%); } // Usando color.adjust
     }
 }
 
@@ -115,60 +115,70 @@ h1 {
     padding: 2rem;
     margin-bottom: 2rem;
     transition: all 0.4s ease;
-  
+
     &:hover {
       transform: translateY(-5px);
       box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
-  }
+}
 
-  // Ajuste específico para a seção de citações para ficar num bloco
+// Ajuste específico para a seção de citações para ficar num bloco
 .quote-section {
-    background-color: #fdf7f2;
+    background-color: #fdf7f2; // Cor de fundo mais clara para o bloco da citação
     border-radius: 1rem;
     padding: 3rem;
     max-width: 800px;
     margin: 0 auto 5rem auto;
     box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-  
+
     h2, p {
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
     }
-  }
+}
 
-  // Responsividade: menos padding em telas pequenas
+// Responsividade: menos padding em telas pequenas
 @media (max-width: 768px) {
     .hero-section {
       flex-direction: column;
       text-align: center;
-  
+
       .hero-image {
         margin-bottom: 2rem;
       }
     }
-  
+
     .info-block {
       padding: 2rem;
     }
-  }
+}
 
 // Adicionar animações de fade-in aos elementos da Home
 .fade-in-delay-1 { animation-delay: 0.2s; }
 .fade-in-delay-2 { animation-delay: 0.4s; }
 .fade-in-delay-3 { animation-delay: 0.6s; }
 .fade-in-delay-4 { animation-delay: 0.8s; }
-.fade-in-delay-5 { animation-delay: 1.0s; }
-
-// Diferenciação dos delays para entrar aos poucos
-.card-block:nth-of-type(1) { animation-delay: 0.2s; }
-.card-block:nth-of-type(2) { animation-delay: 0.4s; }
-.card-block:nth-of-type(3) { animation-delay: 0.6s; }
-
-
-.fade-in-delay-1 { animation-delay: 0.2s; }
-.fade-in-delay-2 { animation-delay: 0.4s; }
-.fade-in-delay-3 { animation-delay: 0.6s; }
-.fade-in-delay-4 { animation-delay: 0.8s; }
 .fade-in-delay-5 { animation-delay: 1s; }
+.fade-in-delay-6 { animation-delay: 1.2s; } 
+.fade-in-delay-7 { animation-delay: 1.4s; } 
+
+.card-secondary-bg {
+    background-color: $secondary-color; // #f6efe8
+    color: $text-color; // Cor de texto padrão para contraste
+    .card-title { color: $primary-color; } // Pode ajustar a cor do título se necessário
+}
+
+.card-primary-bg-light {
+    background-color: $primary-color; // #eabf9f
+    color: white; // Texto branco para contraste
+    .card-title { color: white; }
+    .card-text { color: rgba(255, 255, 255, 0.9); }
+}
+
+.card-accent-bg {
+    background-color: $accent-color; 
+    color: color.adjust($accent-color, $lightness: -40%); // Texto escuro para contraste
+    .card-title { color: color.adjust($accent-color, $lightness: -50%); }
+    .card-text { color: color.adjust($accent-color, $lightness: -30%); }
+}
