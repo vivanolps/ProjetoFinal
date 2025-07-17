@@ -1,51 +1,161 @@
 // src/app/pages/cadastro/cadastro.component.scss
 
-@import '../../../styles.scss'; // Importe os estilos globais para usar as variáveis
+@use "sass:color";
+@import '../../../styles.scss';
 
-.container {
-  background-color: white; // Fundo branco para o container do formulário
-  border-radius: 0.75rem;
-  padding: 2.5rem; // Espaçamento interno
-  box-shadow: 0 4px 15px rgba(0,0,0,0.08); // Sombra sutil
-  transition: all 0.3s ease; // Transição para efeitos
-  max-width: 600px; // Manter a largura máxima definida no HTML
-
-  &:hover {
-    box-shadow: 0 8px 25px rgba(0,0,0,0.12); // Sombra mais proeminente no hover
-  }
+// Estilo para o background geral da página de cadastro
+.main-content-wrapper {
+    background-color: $secondary-color; // Sua cor de fundo clara
+    min-height: calc(100vh - 120px); // Ajuste para ocupar o espaço sem o header/footer
+    display: flex; // Para centralizar o formulário
+    justify-content: center; // Centraliza horizontalmente
+    align-items: center; // Centraliza verticalmente
+    padding: 3rem 1rem; // Padding para telas menores
 }
 
+// Estilo para o 'cartão' que envolve o formulário
+.form-card {
+    background-color: white; // Fundo branco para o formulário
+    border-radius: 1.5rem; // Mais arredondado para um visual moderno
+    padding: 3rem 2.5rem; // Espaçamento interno um pouco maior
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1); // Sombra mais proeminente e suave
+    transition: all 0.4s ease-in-out; // Transição mais suave
+    max-width: 550px; // Largura um pouco menor para o formulário
+    width: 100%; // Garante que ocupe a largura total em telas menores
+    transform: translateY(-10px); // Leve efeito de "levitar"
+    opacity: 0; // Para a animação fade-in
+    animation: fadeInForm 0.8s forwards 0.2s; // Animação de entrada
+
+    &:hover {
+        box-shadow: 0 15px 45px rgba(0,0,0,0.15); // Sombra mais intensa no hover
+        transform: translateY(-15px); // Aumenta o efeito de levitar
+    }
+
+    // AQUI DENTRO DO .form-card, o estilo do botão .btn-submit
+    .btn-submit {
+        background-color: $primary-color; // Sua cor primária (um tom pêssego/coral)
+        color: white; // Cor do texto, branco
+        border: none;
+        border-radius: 2.5rem;
+        padding: 1rem 2.5rem; // Aumentar um pouco mais o padding vertical
+        font-size: 1.25rem; // Aumentar um pouco a fonte
+        font-weight: bold;
+        transition: all 0.3s ease-in-out; // Transição mais suave
+        width: 100%;
+
+        box-shadow: 0 8px 20px rgba($primary-color, 0.35); // Sombra mais pronunciada e com a cor primária
+        text-transform: uppercase; // Texto em maiúsculas para mais impacto
+        letter-spacing: 0.08rem; // Um pouco mais de espaçamento entre as letras
+
+        &:hover {
+            background-color: darken($primary-color, 10%); // Escurecer mais no hover
+            transform: translateY(-4px); // Efeito "levitar" mais evidente
+            box-shadow: 0 12px 25px rgba($primary-color, 0.45); // Sombra mais forte no hover
+        }
+
+        &:disabled {
+            background-color: lighten($primary-color, 25%); // Fundo mais claro quando desabilitado
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+            opacity: 0.7; // Levemente transparente
+        }
+    }
+
+    // Mover o media query para dentro do .form-card, se ele se aplica apenas ao .form-card
+    @media (max-width: 576px) {
+        padding: 2rem 1.5rem;
+        border-radius: 1rem;
+    }
+}
+
+// Animação para o formulário (deve estar no nível raiz ou dentro de um elemento pai comum)
+@keyframes fadeInForm {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
 h1 {
-    color: $primary-color; // Garante a cor do título
+    color: $primary-color; // Sua cor primária
+    font-size: 2.5rem; // Tamanho de fonte maior para o título
+    font-weight: bold; // Negrito
     margin-bottom: 2rem;
+    text-align: center; // Centraliza o título
+    letter-spacing: 0.05rem; // Leve espaçamento entre letras
+
+    @media (max-width: 768px) {
+        font-size: 2rem;
+    }
 }
 
 .form-label {
     color: $text-color; // Cor dos rótulos
-    font-weight: 500;
+    font-weight: 600; // Um pouco mais de peso
+    margin-bottom: 0.5rem; // Espaçamento abaixo do label
+    display: block; // Garante que o label ocupe sua própria linha
 }
 
 .form-control {
-    border-color: lighten($text-color, 30%); // Borda mais suave
+    border: 1px solid lighten($text-color, 35%); // Borda mais suave
+    border-radius: 0.75rem; // Bordas mais arredondadas para os inputs
+    padding: 0.8rem 1rem; // Mais padding
+    font-size: 1rem;
+    color: $text-color;
+
     &:focus {
-        border-color: $primary-color;
-        box-shadow: 0 0 0 0.25rem rgba($primary-color, 0.25);
+        border-color: $primary-color; // Borda primária no foco
+        box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.2); // Sombra de foco mais suave
+        outline: none; // Remove o outline padrão
+    }
+
+    &::placeholder {
+        color: lighten($text-color, 20%); // Cor mais clara para o placeholder
+        font-style: italic;
     }
 }
 
-.btn-submit { // Nova classe para o botão de enviar
-    background-color: $primary-color;
-    color: white; // Cor do texto do botão
-    border: none; // Sem borda
-    border-radius: 2rem; // Mantém o arredondamento
-    padding: 0.8rem 2rem; // Mais padding para um botão LG
-    font-size: 1.1rem; // Fonte um pouco maior
-    transition: all 0.3s ease;
-    width: 100%; // Botão ocupa a largura total do formulário
+.form-check {
+    display: flex; // Usar flexbox para alinhar checkbox e label
+    align-items: flex-start; // Alinha o topo do checkbox com o texto do label
+    margin-top: 1.5rem; // Espaçamento acima do checkbox
+    margin-bottom: 2rem !important; // Aumentar margem inferior
 
-    &:hover {
-        background-color: darken($primary-color, 10%);
-        transform: translateY(-2px);
-        box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+    .form-check-input {
+        margin-right: 0.75rem; // Espaçamento entre checkbox e label
+        width: 1.25rem; // Tamanho maior para o checkbox
+        height: 1.25rem;
+        border-radius: 0.35rem; // Levemente arredondado
+        border: 1px solid lighten($text-color, 25%);
+
+        &:checked {
+            background-color: $primary-color;
+            border-color: $primary-color;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.2);
+        }
     }
+
+    .form-check-label {
+        font-size: 0.95rem;
+        color: $text-color;
+        line-height: 1.4; // Ajuste o line-height para melhor leitura
+    }
+
+    .privacy-link {
+        color: $primary-color; // Cor do link de privacidade
+        font-weight: 500;
+        &:hover {
+            color: darken($primary-color, 10%);
+            text-decoration: none; // Remove sublinhado no hover
+        }
+    }
+}
+
+.text-danger {
+    font-size: 0.85rem; // Tamanho menor para mensagens de erro
+    margin-top: 0.25rem; // Espaçamento menor
+    color: #e74c3c; // Cor vermelha mais vibrante para erros
 }
