@@ -1,35 +1,34 @@
 <nav class="navbar navbar-expand-lg" [class.navbar-scrolled]="isScrolled" style="background-color: #f6efe8;">
-    <div class="container">
-        <a class="navbar-brand fade-in" routerLink="/" style="font-weight: 600; color: #5c4a3f;">
-          <i class="fas fa-spa me-2"></i> <!-- Ícone de spa (Font Awesome) -->
-          Evelyn Estética
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse fade-in" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
+  <div class="container">
+      <a class="navbar-brand fade-in" routerLink="/" style="font-weight: 600; color: #5c4a3f;">
+          <i class="fas fa-spa me-2"></i> Evelyn Estética
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse fade-in" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" routerLink="/" routerLinkActive="active">
-                  <i class="fas fa-home me-1"></i> Home
-                </a>
+                  <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                      <i class="fas fa-home me-1"></i> Home
+                  </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/curso" routerLinkActive="active">
-                  <i class="fas fa-book me-1"></i> Curso
-                </a>
+                  <a class="nav-link" routerLink="/curso" routerLinkActive="active">
+                      <i class="fas fa-book me-1"></i> Curso
+                  </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/cadastro" routerLinkActive="active">
-                  <i class="fas fa-user-plus me-1"></i> Cadastro
-                </a>
+                  <a class="nav-link" routerLink="/cadastro" routerLinkActive="active">
+                      <i class="fas fa-user-plus me-1"></i> Cadastro
+                  </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink="/aluno" routerLinkActive="active">
-                  <i class="fas fa-user-graduate me-1"></i> Área do Aluno
-                </a>
+                  <a class="nav-link" routerLink="/aluno" routerLinkActive="active">
+                      <i class="fas fa-user-graduate me-1"></i> Área do Aluno
+                  </a>
               </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+          </ul>
+      </div>
+  </div>
+</nav>

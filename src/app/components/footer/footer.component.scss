@@ -1,11 +1,12 @@
+@use "sass:color"; // Adicione esta linha no topo, se ainda não tiver
 @import '../../../styles.scss';
 
 .footer {
-  background-color: darken($secondary-color, 5%);
+  background-color: color.adjust($secondary-color, $lightness: -5%); // Usando color.adjust
   color: $text-color;
   padding: 3rem 0 0;
-  position: relative;
-  bottom: 0;
+  position: relative; // Manter position relative para o footer
+  bottom: 0; // Isso não "cola" no final da tela por si só, é mais para contexto de layout
   width: 100%;
 
   .footer-brand {
@@ -61,10 +62,20 @@
       margin-bottom: 0.8rem;
       display: flex;
       align-items: center;
+      font-size: 0.95rem; // Ajuste para o texto de contato
+
+      a { // Estiliza os links de telefone e whatsapp
+        color: $text-color;
+        text-decoration: none;
+        &:hover {
+          color: $primary-color;
+        }
+      }
 
       i {
         width: 20px;
         color: $primary-color;
+        font-size: 1.1rem; // Ajusta tamanho do ícone de contato
       }
     }
   }
@@ -75,6 +86,7 @@
       font-size: 1.5rem;
       margin-right: 1rem;
       transition: all 0.3s;
+      display: inline-block; // Para aplicar transform
 
       &:hover {
         color: $primary-color;
@@ -86,8 +98,9 @@
   .footer-copyright {
     margin-top: 3rem;
     padding-top: 1.5rem;
-    border-top: 1px solid rgba($text-color, 0.1);
+    border-top: 1px solid color.adjust($text-color, $alpha: -0.9); // Usando color.adjust para transparência
     text-align: center;
+    padding-bottom: 1.5rem; // Adicionado padding inferior ao copyright para espaçamento
 
     small {
       font-size: 0.8rem;
@@ -95,22 +108,21 @@
     }
   }
 
-  .footer {
-    &-links a, &-social a {
-      position: relative;
-      &::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -2px;
-        left: 0;
-        background-color: $primary-color;
-        transition: width 0.3s;
-      }
-      &:hover::after {
-        width: 100%;
-      }
+  // Estilos para sublinhado de hover (mantidos)
+  .footer-links a, .footer-social a {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: $primary-color;
+      transition: width 0.3s;
+    }
+    &:hover::after {
+      width: 100%;
     }
   }
 }
