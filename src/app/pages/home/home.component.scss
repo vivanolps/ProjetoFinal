@@ -1,184 +1,184 @@
-// src/app/pages/home/home.component.scss
+/* src/app/pages/home/home.component.scss */
 
-@use "sass:color"; 
-@import '../../../styles.scss'; 
+@use "sass:color";
+@import '../../../styles.scss';
 
-.container.py-5 {
-    padding-top: 4rem !important; // Ajuste o padding superior
-    padding-bottom: 4rem !important; // Ajuste o padding inferior
-}
-
+// Estilos para a Seção Principal/Hero
 .hero-section {
-    display: flex; // Usa flexbox para alinhamento (já vem do row/align-items-center)
-    align-items: center;
-    margin-bottom: 5rem; // Espaçamento abaixo da seção
-}
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    // Removido o z-index aqui, pois geralmente não é necessário para o contêiner principal.
+    // Se o navbar for fixed/sticky, ele deve ter um z-index maior.
 
-.hero-image {
-    max-width: 100%; // Garante responsividade
-    height: auto;
-    border-radius: 0.75rem; // Arredonda bordas da imagem
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); // Adiciona sombra para profundidade
-}
-
-h1 {
-    color: $primary-color; // Garante a cor do título principal
-    font-size: 3rem; // Tamanho da fonte maior
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-}
-
-.lead {
-    color: color.adjust($text-color, $lightness: 10%); // Usando color.adjust
-    font-size: 1.3rem;
-    margin-bottom: 2rem;
-}
-
-// Botão "Ver Curso"
-.btn-outline-dark { // Já definido em styles.scss, só garantir que se encaixa bem aqui
-    color: $text-color;
-    border-color: $text-color;
-    &:hover {
-        background-color: $primary-color;
-        color: white;
-        border-color: $primary-color;
+    .hero-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        object-fit: cover;
+        min-height: 250px;
+        max-height: 400px;
     }
-}
 
-// Seção de Citação
-.quote-section {
-    text-align: center;
-    margin-bottom: 5rem;
-    h2 {
-        color: $text-color; // Cor para a citação, talvez diferente do h1 padrão
-        font-weight: 600;
-        font-size: 2.2rem;
-        margin-bottom: 0.5rem;
+    .hero-title {
+        color: $primary-color;
+        font-size: 3rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        position: relative; // Garante que o texto fique acima do botão se houver sobreposição
+
+        @media (max-width: 768px) {
+            font-size: 2.2rem;
+            text-align: center;
+        }
     }
-    p {
-        color: color.adjust($text-color, $lightness: 15%); // Usando color.adjust
-        font-size: 1.1rem;
+
+    .hero-description {
+        color: $text-color;
+        font-size: 1.25rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+        position: relative; // Garante que o texto fique acima do botão
+
+        @media (max-width: 768px) {
+            font-size: 1.1rem;
+            text-align: center;
+        }
     }
-    // Botão "Quero me cadastrar"
-    .btn-register {
+
+    .btn-primary-custom {
         background-color: $primary-color;
         color: white;
         border: none;
-        @extend .btn; // Herda estilos base de .btn definido em styles.scss
+        padding: 0.8rem 2.5rem;
+        border-radius: 2rem;
         font-size: 1.1rem;
-        padding: 0.7rem 2rem;
-        border-radius: 2rem; // Mais arredondado
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        display: inline-block;
+        // z-index: 1; /* Removido, pois pode causar problemas se não for realmente necessário */
+        // position: relative; /* Removido, a menos que o botão precise de posicionamento relativo específico */
+
         &:hover {
-            background-color: color.adjust($primary-color, $lightness: -10%); // Usando color.adjust
+            background-color: color.adjust($primary-color, $lightness: -10%);
+            transform: translateY(-2px);
+        }
+        // Estado ativo/clique - Verificando se há algo que oculte o texto
+        &:active, &:focus {
+            // Garante que o botão não se sobreponha de forma invisível
+            outline: none; // Remove o outline padrão do foco, se houver
+            // background-color: color.adjust($primary-color, $lightness: -20%); // Um feedback visual para o clique
         }
     }
 }
 
-// Seção de Horários e Mensagem
-.info-block {
-    padding: 4rem; // Mantém o padding
-    border-radius: 0.75rem; // Arredonda as bordas
-    overflow: hidden; // Garante que o conteúdo não vaze
-    height: 100%; // Garante que blocos da mesma linha tenham a mesma altura
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 
-    h3 {
-        font-weight: 600;
-        margin-bottom: 1rem;
-    }
-    p {
-        font-size: 1.1rem;
-        line-height: 1.5;
-    }
-
-    &.hours-block {
-        background-color: $primary-color;
-        color: white;
-        h3, p { color: white; } // Garante que o texto seja branco
-    }
-
-    &.welcome-block {
-        background-color: $accent-color;
-        color: color.adjust($accent-color, $lightness: -40%); // Usando color.adjust
-        h3 { color: color.adjust($accent-color, $lightness: -50%); } // Usando color.adjust
-        p { color: color.adjust($accent-color, $lightness: -30%); } // Usando color.adjust
-    }
-}
-
-// Cards genéricos
-.card-block {
-    background-color: white;
+// Estilos para o card "Don't look for love, look for beauty"
+.card-section {
     border-radius: 1rem;
-    box-shadow: 0 4px 25px rgba(0,0,0,0.08);
-    padding: 2rem;
-    margin-bottom: 2rem;
-    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    max-width: 800px;
+    padding: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    transition: all 0.3s ease;
 
     &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    &.card-main-highlight {
+        background-color: $secondary-color;
+    }
+
+    .card-title {
+        color: $primary-color;
+        font-size: 2.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        position: relative; // Garante que o texto fique acima do botão se houver sobreposição
+
+        @media (max-width: 768px) {
+            font-size: 1.8rem;
+        }
+    }
+
+    .card-text {
+        color: $text-color;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        position: relative; // Garante que o texto fique acima do botão
+    }
+    // O botão dentro deste card
+    .btn-primary-custom {
+        // Assegura que o botão não afete os textos vizinhos
+        position: relative;
+        z-index: 10; // Alto o suficiente para estar acima de outros elementos do card
     }
 }
 
-// Ajuste específico para a seção de citações para ficar num bloco
-.quote-section {
-    background-color: #fdf7f2; // Cor de fundo mais clara para o bloco da citação
+// Estilos para os cards de Horários e "Happy to be here"
+.info-card {
     border-radius: 1rem;
-    padding: 3rem;
-    max-width: 800px;
-    margin: 0 auto 5rem auto;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
 
-    h2, p {
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    .info-card-title {
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        position: relative;
+
+        @media (max-width: 768px) {
+            font-size: 1.5rem;
+        }
+    }
+
+    .info-card-text {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        position: relative;
     }
 }
 
-// Responsividade: menos padding em telas pequenas
-@media (max-width: 768px) {
-    .hero-section {
-      flex-direction: column;
-      text-align: center;
-
-      .hero-image {
-        margin-bottom: 2rem;
-      }
+.info-card-orange {
+    background-color: $primary-color;
+    .info-card-title {
+        color: white;
     }
-
-    .info-block {
-      padding: 2rem;
+    .info-card-text {
+        color: white;
     }
 }
 
-// Adicionar animações de fade-in aos elementos da Home
+.info-card-green {
+    background-color: $accent-color;
+    .info-card-title {
+        color: white;
+    }
+    .info-card-text {
+        color: white;
+    }
+}
+
+/* Animações de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
 .fade-in-delay-1 { animation-delay: 0.2s; }
 .fade-in-delay-2 { animation-delay: 0.4s; }
-.fade-in-delay-3 { animation-delay: 0.6s; }
-.fade-in-delay-4 { animation-delay: 0.8s; }
-.fade-in-delay-5 { animation-delay: 1s; }
-.fade-in-delay-6 { animation-delay: 1.2s; } 
-.fade-in-delay-7 { animation-delay: 1.4s; } 
-
-.card-secondary-bg {
-    background-color: $secondary-color; // #f6efe8
-    color: $text-color; // Cor de texto padrão para contraste
-    .card-title { color: $primary-color; } // Pode ajustar a cor do título se necessário
-}
-
-.card-primary-bg-light {
-    background-color: $primary-color; // #eabf9f
-    color: white; // Texto branco para contraste
-    .card-title { color: white; }
-    .card-text { color: rgba(255, 255, 255, 0.9); }
-}
-
-.card-accent-bg {
-    background-color: $accent-color; 
-    color: color.adjust($accent-color, $lightness: -40%); // Texto escuro para contraste
-    .card-title { color: color.adjust($accent-color, $lightness: -50%); }
-    .card-text { color: color.adjust($accent-color, $lightness: -30%); }
-}
