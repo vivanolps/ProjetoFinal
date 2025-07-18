@@ -14,24 +14,24 @@ export class CursoComponent implements OnInit {
     {
       titulo: "Limpeza de Pele Profissional",
       descricao: "Domine técnicas avançadas para acne, oleosidade e rejuvenescimento com certificação internacional.",
-      imagem: "",
+      imagem: "assets/images/spar.jpeg",
       badge: "Mais Procurado!"
     },
     {
       titulo: "Design de Sobrancelhas com Henna",
       descricao: "Aprenda o método perfeito para formatos que realçam o rosto + curso de henna inclusivo.",
-      imagem: "assets/icons/eyebrow-icon.svg"
+      imagem: "assets/images/sombrancelha.jpeg"
     },
     {
       titulo: "Massagem Relaxante com Pedras Quentes",
       descricao: "Técnicas termais para alívio imediato de estresse e dores musculares (inclui kit básico).",
-      imagem: "assets/icons/hot-stone-icon.svg",
+      imagem: "assets/images/massagem.jpeg",
       badge: "Novidade!"
     },
     {
       titulo: "Unhas de Gel do Básico ao Avançado",
       descricao: "Alongamentos, reparos e nail art. Inclui módulo sobre durabilidade e saúde das unhas.",
-      imagem: "assets/icons/nail-icon.svg"
+      imagem: "assets/images/unhas.jpeg"
     },
     {
       titulo: "Skincare Científico",
