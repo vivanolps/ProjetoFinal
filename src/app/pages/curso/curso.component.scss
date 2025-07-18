@@ -37,30 +37,31 @@ $text-color: #6C757D;
   margin: 0 auto 3.5rem;
 }
 
-/* Carrossel - Ajustes para 1 card por vez */
+/* Carrossel - Ajustes para 1 card por vez e melhor espaçamento */
 .course-carousel-wrapper {
   position: relative;
-  max-width: 700px; // Largura máxima do wrapper para acomodar um card grande
+  // Aumentei a largura máxima do wrapper para dar mais espaço ao card e aos controles laterais.
+  max-width: 760px; /* Ajustado para um pouco mais de espaço */
   margin: 0 auto;
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
   background: $original-card-bg;
-  padding: 1.5rem;
+  // Adicionei um padding interno maior para afastar o conteúdo das bordas do wrapper
+  padding: 2.5rem; /* Aumentei o padding interno */
+  margin-bottom: 3rem; /* Espaçamento abaixo do carrossel para os dots ou próximo elemento */
 }
 
 .course-carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
   height: auto;
-  // Remover gap se cada card ocupa 100% e não há outros visíveis
-  // gap: 2rem; // Comentei/Removi o gap
-  padding: 0; // Removi padding horizontal
+  padding: 0;
 }
 
 .course-card {
-  flex: 0 0 100%; // Cada card ocupa 100% da largura do carrossel
-  min-width: unset; // Deixa o flexbox controlar
+  flex: 0 0 100%;
+  min-width: unset;
   background: $original-card-bg;
   border-radius: 1rem;
   overflow: hidden;
@@ -68,12 +69,12 @@ $text-color: #6C757D;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 480px; // Aumentei a altura mínima para o card único
+  min-height: 480px;
   position: relative;
 
   .card-image-container {
     width: 100%;
-    height: 220px; // Aumentei a altura da imagem
+    height: 220px;
     overflow: hidden;
     position: relative;
     border-radius: 1rem 1rem 0 0;
@@ -115,23 +116,23 @@ $text-color: #6C757D;
   }
 
   .card-content {
-    padding: 1.8rem; // Aumentei o padding do conteúdo
+    padding: 1.8rem;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
   }
 
   .card-title {
-    font-size: 1.8rem; // Aumentei o tamanho do título
+    font-size: 1.8rem;
     font-weight: 700;
     margin-bottom: 1rem;
     color: $original-primary-text-color;
   }
 
   .card-description {
-    font-size: 1.05rem; // Aumentei um pouco o tamanho da descrição
-    line-height: 1.7; // Mais espaço entre linhas
-    margin-bottom: 2rem; // Mais espaço antes do botão
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
     color: $text-color;
     flex-grow: 1;
   }
@@ -142,7 +143,7 @@ $text-color: #6C757D;
 
     background: linear-gradient(135deg, $base-color, $darker-color);
     border: none;
-    padding: 0.9rem; // Levemente maior
+    padding: 0.9rem;
     border-radius: 0.5rem;
     font-weight: 600;
     color: white;
@@ -173,7 +174,7 @@ $text-color: #6C757D;
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 0.5rem;
+  padding: 0 0.5rem; /* Mantido para que as setas não fiquem coladas nas bordas do wrapper */
   z-index: 20;
 
   .btn-carousel-control {
@@ -200,7 +201,7 @@ $text-color: #6C757D;
 .carousel-dots {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 2rem; /* Este valor agora é somado ao margin-bottom do wrapper */
   gap: 0.75rem;
 
   span {
@@ -255,7 +256,8 @@ $text-color: #6C757D;
 /* Responsivo - agora sempre 1 card por vez */
 @media (max-width: 992px) {
   .course-carousel-wrapper {
-    max-width: 600px; // Reduzir para tablets
+    max-width: 90%; /* Ajustei para ser mais responsivo e não ficar muito estreito em tablets */
+    padding: 2rem; /* Reduzi o padding um pouco */
   }
   .course-card {
     min-height: 460px;
@@ -286,12 +288,12 @@ $text-color: #6C757D;
   }
 
   .course-carousel-wrapper {
-    max-width: 90%; // Ocupa mais espaço em telas pequenas
-    padding: 0.5rem;
+    max-width: 95%; /* Quase total para mobile */
+    padding: 1.5rem; /* Ajuste para telas menores */
   }
 
   .course-card {
-    min-height: 420px; // Ajuste para mobile
+    min-height: 420px;
     .card-image-container {
       height: 180px;
     }
