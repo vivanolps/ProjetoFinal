@@ -33,43 +33,41 @@
   </div>
 </div>
 
-<div class="curso-section container py-5">
-    <div class="curso-card p-4 p-md-5 mx-auto fade-in">
-        <h1 class="curso-title">CURSOS DE BELEZA PROFISSIONAL</h1>
-        <div class="curso-content">
-            <h2 class="curso-subtitle">Transforme sua carreira com nosso curso</h2>
-            <p class="curso-description">
-                Descubra técnicas avançadas de estética facial e corporal em um ambiente acolhedor e profissional.
-            </p>
-            <a routerLink="/curso" class="btn btn-curso-custom">
-                Ver Curso <i class="bi bi-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-</div>
-
-<div class="container text-center py-5">
-    <div class="card-section card-main-highlight p-4 p-md-5 mx-auto fade-in">
-        <h2 class="card-title">Don't look for love, look for beauty ❤️</h2>
-        <p class="card-text lead mb-4">Invista no que te faz feliz, invista em você.</p>
-        <a routerLink="/cadastro" class="btn btn-primary-custom">Quero me cadastrar</a>
-    </div>
-</div>
-
 <div class="container py-5">
-    <div class="row g-4">
-        <div class="col-md-6">
-            <div class="info-card info-card-orange p-4 p-md-5 h-100 fade-in fade-in-delay-1">
-                <h3 class="info-card-title">Horários</h3>
-                <p class="info-card-text">Segunda a Sexta: 9h - 18h</p>
-                <p class="info-card-text">Sábado: 9h - 12h</p>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="info-card info-card-green p-4 p-md-5 h-100 fade-in fade-in-delay-2">
-                <h3 class="info-card-title">Happy that you are here 🌷</h3>
-                <p class="info-card-text">Estamos prontos para te receber.</p>
-            </div>
-        </div>
-    </div>
+  <!-- Cartão Principal -->
+  <div class="card-beleza-container text-center p-4 p-md-5 mb-5">
+      <h2 class="card-beleza-titulo">Don't look for love, look for beauty ❤️</h2>
+      <p class="card-beleza-texto">Invista no que te faz feliz, invista em você.</p>
+      <a routerLink="/cadastro" class="btn-beleza-destaque">
+          QUERO ME CADASTRAR
+          <i class="bi bi-arrow-right"></i>
+      </a>
+  </div>
+
+  <!-- Cards de Informação -->
+  <div class="row g-4">
+      <!-- Card de Horários -->
+      <div class="col-md-6">
+          <div class="card-info card-info-horarios h-100 p-4 p-md-5">
+              <div class="card-info-icon">🕒</div>
+              <h3 class="card-info-titulo">Horários</h3>
+              <div class="card-info-conteudo">
+                  <p>Segunda a Sexta: <strong>9h - 18h</strong></p>
+                  <p>Sábado: <strong>9h - 12h</strong></p>
+              </div>
+          </div>
+      </div>
+
+      <!-- Card de Boas-Vindas -->
+      <div class="col-md-6">
+          <div class="card-info card-info-bemvindo h-100 p-4 p-md-5">
+              <div class="card-info-icon">🌷</div>
+              <h3 class="card-info-titulo">Happy that you are here</h3>
+              <div class="card-info-conteudo">
+                  <p>Estamos prontos para te receber.</p>
+              </div>
+              <div class="card-info-emoji">😊</div>
+          </div>
+      </div>
+  </div>
 </div>

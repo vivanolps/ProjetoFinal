@@ -1,204 +1,227 @@
-// src/app/pages/curso/curso.component.scss
+
 
 @use "sass:color";
 @import '../../../styles.scss';
 
 .container {
-    background-color: $secondary-color;
-    min-height: calc(100vh - 120px);
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+  background-color: $secondary-color;
+  min-height: calc(100vh - 120px);
+  padding: 5rem 2rem;
 }
 
 .page-title {
-    color: $primary-color;
-    font-size: 3rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    @media (max-width: 768px) {
-        font-size: 2.5rem;
-    }
+  color: $primary-color;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+
 }
 
 .page-description {
-    color: $text-color;
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-    @media (max-width: 768px) {
-        font-size: 1.1rem;
-    }
+  color: $text-color;
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
 }
 
-/* Estilos para o Carrossel Customizado */
+/* Carrossel */
 .course-carousel-wrapper {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    overflow: hidden;
-    border-radius: 1.5rem;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    padding: 2rem;
-    display: flex; // Adicione flexbox para centralizar o carousel-inner se ele não ocupar 100%
-    justify-content: center; // Centraliza horizontalmente
-    align-items: center; // Centraliza verticalmente
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: white;
 }
 
 .course-carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%; // Garante que o carousel ocupe toda a largura disponível
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: 500px; /* Altura fixa para melhor consistência */
 }
 
 .course-card {
-    flex: 0 0 100%;
-    max-width: 600px; // Isso deve estar dentro do card, não do wrapper
-    margin: 0 auto; // Centraliza o próprio card dentro do seu slot
-    text-align: center; // Centraliza o texto e elementos inline/inline-block
-    padding: 2rem;
-    // Removi as propriedades display: flex, flex-direction, etc. de .card-content
-    // para usar text-align: center no .course-card diretamente
-    display: flex; // Torna o card flexível
-    flex-direction: column; // Coloca os itens em coluna
-    align-items: center; // Centraliza horizontalmente os itens flex
-    justify-content: center; // Centraliza verticalmente (se houver espaço)
+  flex: 0 0 100%;
+  padding: 2.5rem;
+  text-align: center;
+  position: relative;
 }
 
-    .card-image {
-        width: 100px; /* Tamanho fixo para o ícone */
-        height: 100px; /* Tamanho fixo para o ícone */
-        object-fit: contain; // Para garantir que a imagem não seja cortada e se ajuste.
-                            // Se as imagens são ícones, 'contain' é melhor.
-                            // Se forem fotos maiores, 'cover' pode ser preferível, mas pode cortar.
-        border-radius: 1rem; // Mantenha se quiser bordas arredondadas para os ícones
-        margin-bottom: 1.5rem;
-        // Removi box-shadow aqui, ícones geralmente não precisam.
-        // display: block; // Já é display flex no pai, então não precisa mais de block
-        // margin-left: auto; // Já é align-items: center no pai, não precisa mais
-        // margin-right: auto; // Já é align-items: center no pai, não precisa mais
-    }
+.card-badge {
+  background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
+}
 
-    .card-content {
-        // Assegure-se de que nenhum estilo aqui sobreponha o text-align: center
-        // do .course-card ou o align-items: center do flexbox do .course-card
-        width: 100%; // Garante que o card-content ocupe a largura total para o texto
-    }
+.card-icon {
+  background: linear-gradient(135deg, $primary-color 0%, lighten($primary-color, 15%) 100%);
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+}
 
-        h3.card-title {
-            color: $primary-color;
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-align: center; // Garante que o texto do título esteja centralizado
-        }
-        p.card-description {
-            color: $text-color;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-            text-align: center; // Garante que o texto da descrição esteja centralizado
-        }
-    
+.card-title {
+  color: $primary-color;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
 
-    .btn-primary-custom {
-        background-color: $primary-color;
-        color: white;
-        border: none;
-        padding: 0.8rem 2.5rem;
-        border-radius: 2rem;
-        font-size: 1.1rem;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        text-decoration: none;
-        display: inline-block; // Para que seja centralizado por text-align: center;
-
-        &:hover {
-            background-color: color.adjust($primary-color, $lightness: -10%);
-            transform: translateY(-2px);
-        }
-    }
+.card-description {
+  color: $text-color;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
 
 
-/* Estilos para os botões de controle do carrossel */
+.btn-primary-custom {
+  background-color: $primary-color;
+  color: white;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Controles */
 .carousel-controls {
-    position: absolute;
-    top: 50%;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    transform: translateY(-50%);
-    padding: 0 1rem;
-    z-index: 10;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  transform: translateY(-50%);
+  z-index: 10;
 
-    .btn-carousel-control {
-        background-color: rgba($primary-color, 0.8);
-        color: white;
-        border: none;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        font-size: 1.5rem;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-
-        &:hover {
-            background-color: $primary-color;
-            transform: scale(1.1);
-        }
-    }
-}
-
-/* Estilos para os indicadores (pontos) */
-.carousel-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-
-    span {
-        display: block;
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: rgba($text-color, 0.4);
-        margin: 0 0.5rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease, transform 0.2s ease;
-
-        &.active {
-            background-color: $primary-color;
-            transform: scale(1.2);
-        }
-
-        &:hover {
-            background-color: rgba($text-color, 0.7);
-        }
-    }
-}
-
-.btn-inscricao {
-    @extend .btn;
-    background-color: $primary-color;
+  .btn-carousel-control {
+    background-color: rgba($primary-color, 0.8);
     color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     font-size: 1.2rem;
-    padding: 0.8rem 2.5rem;
-    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
     &:hover {
-        background-color: color.adjust($primary-color, $lightness: -10%);
+      background-color: $primary-color;
+      transform: scale(1.1);
     }
+  }
 }
 
-/* Animações de entrada */
+/* Pontos indicadores */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-bottom: 1.5rem;
+
+  span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba($primary-color, 0.3);
+    margin: 0 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.active {
+      background-color: $primary-color;
+      transform: scale(1.3);
+    }
+
+    &:hover {
+      background-color: rgba($primary-color, 0.7);
+    }
+  }
+}
+
+/* Botão principal */
+.btn-inscricao {
+    
+  background-color: $primary-color;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.8rem 2.5rem;
+  border-radius: 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .container {
+    padding: 3rem 1rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+  }
+
+  .course-carousel {
+    height: 450px;
+  }
+
+  .course-card {
+    padding: 1.5rem;
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+  }
+}
+
+/* Animações */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-    opacity: 0;
-    animation: fadeIn 1s forwards;
+  opacity: 0;
+  animation: fadeIn 0.8s forwards;
 }
 
 .fade-in-delay-1 { animation-delay: 0.2s; }
