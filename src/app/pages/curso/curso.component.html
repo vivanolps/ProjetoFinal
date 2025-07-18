@@ -7,14 +7,16 @@
     <div class="course-carousel-wrapper fade-in fade-in-delay-1" (mouseenter)="pauseAutoPlay()"
       (mouseleave)="startAutoPlay()">
   
-      <div class="course-carousel" [style.transform]="'translateX(' + (-currentIndex * (100 / itemsPerView)) + '%)'">
+      <div class="course-carousel" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
         <div class="course-card carousel-slide" *ngFor="let curso of cursos; let i = index">
+          
           <div class="card-image-container">
             <img [src]="curso.imagem" [alt]="curso.titulo" class="card-img-top">
             <div class="image-overlay"></div>
-            </div>
+          </div>
   
           <div class="card-badge" *ngIf="curso.badge">{{ curso.badge }}</div>
+          
           <div class="card-content">
             <h3 class="card-title">{{ curso.titulo }}</h3>
             <p class="card-description">{{ curso.descricao }}</p>

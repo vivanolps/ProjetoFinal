@@ -1,24 +1,24 @@
 @use "sass:color";
 @import '../../../styles.scss';
 
-// Cores baseadas na sua paleta original da imagem 219c88.png
-$original-primary-text-color: #A0522D; // Marrom escuro da sua paleta para títulos
-$original-light-bg: #FDF9F6;           // Bege claro do fundo da página
-$original-card-bg: #FFFFFF;            // Branco dos cards
-$original-progress-fill: #D2B48C;      // Laranja/Cobre da barra (se aplicável aqui)
-$original-button-bg: #D2B48C;          // Laranja do botão "Continuar"
-$original-button-text-color: white; // Cor do texto do botão
-$original-badge-popular-bg: lighten($original-button-bg, 15%); // Um tom mais claro do laranja para badge popular
-$original-badge-popular-text: darken($original-primary-text-color, 5%); // Texto mais escuro para o badge popular
-$original-badge-new-bg: #ADD8E6; // Um azul claro para "Novidade" (exemplo, ajuste se tiver uma cor específica)
-$original-badge-new-text: #000080; // Texto azul escuro para "Novidade"
+// Cores baseadas na sua paleta original
+// POR FAVOR, ajuste esses valores de HEX se você tiver os exatos da sua paleta!
+$original-primary-text-color: #A0522D;
+$original-light-bg: #FDF9F6;
+$original-card-bg: #FFFFFF;
+$original-progress-fill: #D2B48C;
+$original-button-bg: #D2B48C;
+$original-button-text-color: white;
+$original-badge-popular-bg: lighten($original-button-bg, 15%);
+$original-badge-popular-text: darken($original-primary-text-color, 5%);
+$original-badge-new-bg: #ADD8E6;
+$original-badge-new-text: #000080;
 
-// Usando text-color do seu styles.scss se estiver definido, senão padrão
-$text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-color` global
+$text-color: #6C757D;
 
 .container {
-  background-color: $original-light-bg; // Fundo da página
-  min-height: calc(100vh - 120px); // Ajuste se o header/footer tiverem alturas diferentes
+  background-color: $original-light-bg;
+  min-height: calc(100vh - 120px);
   padding: 5rem 2rem;
   text-align: center;
 }
@@ -33,57 +33,56 @@ $text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-c
 .page-description {
   color: $text-color;
   font-size: 1.2rem;
-  max-width: 700px; // Aumentei um pouco para descrições mais longas
-  margin: 0 auto 3.5rem; // Aumentei o margin-bottom
+  max-width: 700px;
+  margin: 0 auto 3.5rem;
 }
 
-/* Carrossel - ajustes de layout para exibir múltiplos cards */
+/* Carrossel - Ajustes para 1 card por vez */
 .course-carousel-wrapper {
   position: relative;
-  max-width: 1100px; // Aumentei a largura máxima para caber 3-4 cards
+  max-width: 700px; // Largura máxima do wrapper para acomodar um card grande
   margin: 0 auto;
   overflow: hidden;
   border-radius: 1.5rem;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-  background: $original-card-bg; // Fundo do carrossel
-  padding: 1.5rem; // Aumentei o padding interno
+  background: $original-card-bg;
+  padding: 1.5rem;
 }
 
 .course-carousel {
   display: flex;
   transition: transform 0.5s ease-in-out;
   height: auto;
-  gap: 2rem; // Espaço maior entre cards
-  padding: 0 1rem; // Padding horizontal para os cards não ficarem colados nas bordas
-  // Remove min-width: calc(100% / 3) * number_of_slides ou similar para que o flexbox gerencie
+  // Remover gap se cada card ocupa 100% e não há outros visíveis
+  // gap: 2rem; // Comentei/Removi o gap
+  padding: 0; // Removi padding horizontal
 }
 
 .course-card {
-  flex: 0 0 calc(33.333% - 1.333rem); // Exibe 3 cards por vez, subtraindo o gap
-  // (33.333% é 100% / 3 cards. 1.333rem é (gap * (n_cards - 1)) / n_cards = (2rem * 2) / 3)
-  min-width: 300px; // Largura mínima para o card, para não encolher demais
-  background: $original-card-bg; // Fundo do card
+  flex: 0 0 100%; // Cada card ocupa 100% da largura do carrossel
+  min-width: unset; // Deixa o flexbox controlar
+  background: $original-card-bg;
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 450px; // Altura mínima consistente para cards
-  position: relative; // Para posicionar o badge
+  min-height: 480px; // Aumentei a altura mínima para o card único
+  position: relative;
 
   .card-image-container {
     width: 100%;
-    height: 200px; // Altura fixa para a imagem para consistência
+    height: 220px; // Aumentei a altura da imagem
     overflow: hidden;
-    position: relative; // Para o overlay e badge
-    border-radius: 1rem 1rem 0 0; // Bordas arredondadas no topo
+    position: relative;
+    border-radius: 1rem 1rem 0 0;
 
     .card-img-top {
       width: 100%;
       height: 100%;
-      object-fit: cover; // Garante que a imagem cubra o espaço sem distorcer
-      object-position: center; // Centraliza a imagem
+      object-fit: cover;
+      object-position: center;
     }
 
     .image-overlay {
@@ -92,64 +91,76 @@ $text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-c
       left: 0;
       width: 100%;
       height: 100%;
-      // Gradiente escuro para melhorar o contraste do texto
       background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
     }
   }
 
   .card-badge {
     position: absolute;
-    top: 1rem; // Posição do badge
+    top: 1rem;
     right: 1rem;
-    background-color: $original-badge-popular-bg; // Cor de fundo do badge
-    color: $original-badge-popular-text; // Cor do texto do badge
+    background-color: $original-badge-popular-bg;
+    color: $original-badge-popular-text;
     padding: 0.4rem 0.8rem;
     border-radius: 0.5rem;
     font-weight: 600;
     font-size: 0.85rem;
-    z-index: 10; // Para ficar acima da imagem e overlay
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Sombra sutil para o badge
+    z-index: 10;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 
-    &.Novidade { // Exemplo de como estilizar badges específicos, se necessário
+    &.Novidade {
       background-color: $original-badge-new-bg;
       color: $original-badge-new-text;
     }
   }
 
   .card-content {
-    padding: 1.5rem;
+    padding: 1.8rem; // Aumentei o padding do conteúdo
     display: flex;
     flex-direction: column;
-    flex-grow: 1; // Permite que o conteúdo ocupe o espaço restante
+    flex-grow: 1;
   }
 
   .card-title {
-    font-size: 1.5rem;
+    font-size: 1.8rem; // Aumentei o tamanho do título
     font-weight: 700;
-    margin-bottom: 0.8rem;
-    color: $original-primary-text-color; // Cor do título do card
+    margin-bottom: 1rem;
+    color: $original-primary-text-color;
   }
 
   .card-description {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-bottom: 1.5rem;
-    color: $text-color; // Cor da descrição do card
-    flex-grow: 1; // Faz a descrição ocupar o espaço, empurrando o botão para baixo
+    font-size: 1.05rem; // Aumentei um pouco o tamanho da descrição
+    line-height: 1.7; // Mais espaço entre linhas
+    margin-bottom: 2rem; // Mais espaço antes do botão
+    color: $text-color;
+    flex-grow: 1;
   }
 
   .btn-primary-custom {
-    background-color: $original-button-bg; // Cor do botão "Quero me inscrever"
+    $base-color: $original-button-bg;
+    $darker-color: darken($base-color, 15%);
+
+    background: linear-gradient(135deg, $base-color, $darker-color);
     border: none;
-    padding: 0.8rem;
+    padding: 0.9rem; // Levemente maior
     border-radius: 0.5rem;
     font-weight: 600;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
     width: 100%;
-    color: $original-button-text-color; // Cor do texto do botão
-    transition: background-color 0.3s ease;
+    cursor: pointer;
 
     &:hover {
-      background-color: darken($original-button-bg, 10%); // Escurece no hover
+      background: linear-gradient(135deg, darken($base-color, 5%), darken($darker-color, 5%));
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
   }
 }
@@ -162,17 +173,17 @@ $text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-c
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 0.5rem; // Padding para os botões não ficarem colados nas bordas
-  z-index: 20; // Garante que os botões fiquem acima dos cards
+  padding: 0 0.5rem;
+  z-index: 20;
 
   .btn-carousel-control {
     background-color: white !important;
-    color: $original-primary-text-color !important; // Cor dos ícones do botão
+    color: $original-primary-text-color !important;
     border-radius: 50% !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
     width: 50px !important;
     height: 50px !important;
-    font-size: 1.5rem; // Tamanho do ícone de seta
+    font-size: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -189,13 +200,13 @@ $text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-c
 .carousel-dots {
   display: flex;
   justify-content: center;
-  margin-top: 2rem; // Espaçamento acima dos pontos
+  margin-top: 2rem;
   gap: 0.75rem;
 
   span {
-    width: 12px; // Tamanho menor
+    width: 12px;
     height: 12px;
-    background-color: rgba($original-primary-text-color, 0.3); // Cor dos pontos inativos
+    background-color: rgba($original-primary-text-color, 0.3);
     border-radius: 50%;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
@@ -206,42 +217,61 @@ $text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-c
     }
 
     &.active {
-      background-color: $original-primary-text-color; // Cor do ponto ativo
-      transform: scale(1.2); // Levemente maior
+      background-color: $original-primary-text-color;
+      transform: scale(1.2);
     }
   }
 }
 
 /* Botão "Garanta sua vaga agora!" */
 .btn-inscricao {
-  background-color: $original-button-bg; // Usando a mesma cor do botão do card
-  color: $original-button-text-color;
+  $base-color: $original-button-bg;
+  $darker-color: darken($base-color, 15%);
+
+  background: linear-gradient(135deg, $base-color, $darker-color);
+  color: white;
   padding: 1rem 2.5rem;
   font-size: 1.3rem;
   font-weight: 700;
   border-radius: 0.75rem;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
 
   &:hover {
-    background-color: darken($original-button-bg, 10%);
+    background: linear-gradient(135deg, darken($base-color, 5%), darken($darker-color, 5%));
     transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   }
 }
 
 
-/* Responsivo */
-@media (max-width: 992px) { // Para tablets, exibe 2 cards por vez
+/* Responsivo - agora sempre 1 card por vez */
+@media (max-width: 992px) {
+  .course-carousel-wrapper {
+    max-width: 600px; // Reduzir para tablets
+  }
   .course-card {
-    flex: 0 0 calc(50% - 1rem); // 2 cards por linha
-    min-width: unset; // Deixa o flexbox controlar
-  }
-  .carousel-controls {
-    padding: 0 0.2rem;
+    min-height: 460px;
+    .card-content {
+      padding: 1.5rem;
+    }
+    .card-title {
+      font-size: 1.6rem;
+    }
+    .card-description {
+      font-size: 1rem;
+    }
   }
 }
 
-@media (max-width: 768px) { // Para celulares, exibe 1 card por vez
+@media (max-width: 768px) {
   .container {
     padding: 3rem 1rem;
   }
@@ -256,19 +286,14 @@ $text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-c
   }
 
   .course-carousel-wrapper {
-    padding: 0.5rem; // Menos padding
-  }
-
-  .course-carousel {
-    gap: 1rem; // Menor gap
-    padding: 0 0.5rem;
+    max-width: 90%; // Ocupa mais espaço em telas pequenas
+    padding: 0.5rem;
   }
 
   .course-card {
-    flex: 0 0 100%; // 1 card por linha
-    min-height: 400px;
+    min-height: 420px; // Ajuste para mobile
     .card-image-container {
-      height: 180px; // Altura da imagem um pouco menor
+      height: 180px;
     }
     .card-content {
       padding: 1rem;

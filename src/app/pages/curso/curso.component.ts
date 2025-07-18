@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, OnDestroy } from '@angular/core'; // Importado HostListener e OnDestroy
+import { Component, OnInit, OnDestroy } from '@angular/core'; // Removido HostListener
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './curso.component.html',
   styleUrls: ['./curso.component.scss']
 })
-export class CursoComponent implements OnInit, OnDestroy { // Implementado OnDestroy
+export class CursoComponent implements OnInit, OnDestroy {
   cursos = [
     {
       titulo: "Limpeza de Pele Profissional",
@@ -36,18 +36,14 @@ export class CursoComponent implements OnInit, OnDestroy { // Implementado OnDes
     {
       titulo: "Skincare Científico",
       descricao: "Rotinas personalizadas para cada tipo de pele: do anti-idade ao tratamento de melasma.",
-      imagem: "assets/icons/skincare-icon.svg" // Se for SVG, certifique-se que o CSS de imagem o renderize
+      imagem: "assets/icons/skincare-icon.svg"
     }
   ];
 
   currentIndex = 0;
   autoPlay = true;
   private carouselInterval: any;
-  itemsPerView: number = 3; // Variável para controlar quantos itens são exibidos por vez
-
-  constructor() {
-    this.updateItemsPerView(window.innerWidth); // Define o valor inicial baseado na largura da tela
-  }
+  // itemsPerView: number = 1; // Não é mais necessário controlar dinamicamente, pois sempre é 1
 
   ngOnInit() {
     if (this.autoPlay) {
@@ -55,12 +51,12 @@ export class CursoComponent implements OnInit, OnDestroy { // Implementado OnDes
     }
   }
 
-  ngOnDestroy() { // Limpa o intervalo ao destruir o componente
+  ngOnDestroy() {
     this.pauseAutoPlay();
   }
 
   startAutoPlay() {
-    this.pauseAutoPlay(); // Garante que não há múltiplos intervalos
+    this.pauseAutoPlay();
     this.carouselInterval = setInterval(() => {
       this.nextCourse();
     }, 5000);
@@ -73,55 +69,17 @@ export class CursoComponent implements OnInit, OnDestroy { // Implementado OnDes
   }
 
   nextCourse() {
-    // Avança pelo número de itens por vista
-    this.currentIndex = (this.currentIndex + this.itemsPerView) % this.cursos.length;
-    // Se avançar demais e não houver cursos suficientes para preencher a última "página",
-    // volta para o início ou ajusta para mostrar os últimos itens.
-    if (this.currentIndex + this.itemsPerView > this.cursos.length && this.cursos.length > this.itemsPerView) {
-        this.currentIndex = 0; // Volta para o início se não houver mais "páginas" completas
-    }
-    // Lógica alternativa: se quiser que ele pare no último item e não volte
-    // this.currentIndex = Math.min(this.currentIndex + this.itemsPerView, this.cursos.length - this.itemsPerView);
-    // if (this.currentIndex < 0) this.currentIndex = 0; // Previne ir para um índice negativo no início
+    this.currentIndex = (this.currentIndex + 1) % this.cursos.length; // Avança 1 por 1
   }
 
   prevCourse() {
-    // Retrocede pelo número de itens por vista
-    this.currentIndex = (this.currentIndex - this.itemsPerView + this.cursos.length) % this.cursos.length;
-    // Ajuste para evitar índices negativos e garantir que sempre mostre a "página" anterior
-    if (this.currentIndex < 0 || this.currentIndex + this.itemsPerView > this.cursos.length) {
-        this.currentIndex = this.cursos.length - this.itemsPerView;
-        if (this.currentIndex < 0) this.currentIndex = 0; // Caso haja menos itens que itemsPerView
-    }
+    this.currentIndex = (this.currentIndex - 1 + this.cursos.length) % this.cursos.length; // Retrocede 1 por 1
   }
 
-
   goToCourse(index: number) {
-    // Quando clicar no dot, vai para o início daquele "bloco" de cards
     this.currentIndex = index;
-    // Pausa o autoplay ao interagir manualmente
     this.pauseAutoPlay();
   }
 
-  // Listener para atualizar itemsPerView quando a tela muda de tamanho
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.updateItemsPerView(event.target.innerWidth);
-  }
-
-  private updateItemsPerView(width: number) {
-    if (width <= 768) { // Celulares
-      this.itemsPerView = 1;
-    } else if (width <= 992) { // Tablets
-      this.itemsPerView = 2;
-    } else { // Desktops
-      this.itemsPerView = 3;
-    }
-    // Garante que o currentIndex seja um múltiplo de itemsPerView ou esteja dentro dos limites
-    this.currentIndex = Math.floor(this.currentIndex / this.itemsPerView) * this.itemsPerView;
-    if (this.currentIndex + this.itemsPerView > this.cursos.length && this.cursos.length > 0) {
-      this.currentIndex = this.cursos.length - this.itemsPerView;
-      if (this.currentIndex < 0) this.currentIndex = 0;
-    }
-  }
+  // Removido o @HostListener e updateItemsPerView, pois o carrossel agora é sempre 1 item por vez.
 }
