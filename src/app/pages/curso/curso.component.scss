@@ -1,177 +1,304 @@
-.cursos-section {
-    text-align: center;
-    background: #f7f0e9;
-    padding: 4rem 1rem;
-  
-    .section-title {
-      font-size: 2.5rem;
-      color: #ecbb97;
-      font-weight: 700;
+@use "sass:color";
+@import '../../../styles.scss';
+
+// Cores baseadas na sua paleta original da imagem 219c88.png
+$original-primary-text-color: #A0522D; // Marrom escuro da sua paleta para títulos
+$original-light-bg: #FDF9F6;           // Bege claro do fundo da página
+$original-card-bg: #FFFFFF;            // Branco dos cards
+$original-progress-fill: #D2B48C;      // Laranja/Cobre da barra (se aplicável aqui)
+$original-button-bg: #D2B48C;          // Laranja do botão "Continuar"
+$original-button-text-color: white; // Cor do texto do botão
+$original-badge-popular-bg: lighten($original-button-bg, 15%); // Um tom mais claro do laranja para badge popular
+$original-badge-popular-text: darken($original-primary-text-color, 5%); // Texto mais escuro para o badge popular
+$original-badge-new-bg: #ADD8E6; // Um azul claro para "Novidade" (exemplo, ajuste se tiver uma cor específica)
+$original-badge-new-text: #000080; // Texto azul escuro para "Novidade"
+
+// Usando text-color do seu styles.scss se estiver definido, senão padrão
+$text-color: #6C757D; // Um cinza para descrições, ajuste se tiver um `$text-color` global
+
+.container {
+  background-color: $original-light-bg; // Fundo da página
+  min-height: calc(100vh - 120px); // Ajuste se o header/footer tiverem alturas diferentes
+  padding: 5rem 2rem;
+  text-align: center;
+}
+
+.page-title {
+  color: $original-primary-text-color;
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.page-description {
+  color: $text-color;
+  font-size: 1.2rem;
+  max-width: 700px; // Aumentei um pouco para descrições mais longas
+  margin: 0 auto 3.5rem; // Aumentei o margin-bottom
+}
+
+/* Carrossel - ajustes de layout para exibir múltiplos cards */
+.course-carousel-wrapper {
+  position: relative;
+  max-width: 1100px; // Aumentei a largura máxima para caber 3-4 cards
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  background: $original-card-bg; // Fundo do carrossel
+  padding: 1.5rem; // Aumentei o padding interno
+}
+
+.course-carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  height: auto;
+  gap: 2rem; // Espaço maior entre cards
+  padding: 0 1rem; // Padding horizontal para os cards não ficarem colados nas bordas
+  // Remove min-width: calc(100% / 3) * number_of_slides ou similar para que o flexbox gerencie
+}
+
+.course-card {
+  flex: 0 0 calc(33.333% - 1.333rem); // Exibe 3 cards por vez, subtraindo o gap
+  // (33.333% é 100% / 3 cards. 1.333rem é (gap * (n_cards - 1)) / n_cards = (2rem * 2) / 3)
+  min-width: 300px; // Largura mínima para o card, para não encolher demais
+  background: $original-card-bg; // Fundo do card
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 450px; // Altura mínima consistente para cards
+  position: relative; // Para posicionar o badge
+
+  .card-image-container {
+    width: 100%;
+    height: 200px; // Altura fixa para a imagem para consistência
+    overflow: hidden;
+    position: relative; // Para o overlay e badge
+    border-radius: 1rem 1rem 0 0; // Bordas arredondadas no topo
+
+    .card-img-top {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; // Garante que a imagem cubra o espaço sem distorcer
+      object-position: center; // Centraliza a imagem
     }
-  
-    .section-subtitle {
-      font-size: 1.1rem;
-      color: #7a6b60;
-      margin-bottom: 2rem;
-    }
-  
-    .carousel-container {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 2rem;
-      padding: 4rem 2rem 3rem;
-      overflow: hidden;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-    }
-  
-    .course-card {
+
+    .image-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-      padding: 2rem;
-      z-index: 1;
-      pointer-events: none;
-      border-radius: 2rem;
-  
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  
-      &.active {
-        opacity: 1;
-        transform: translateY(0);
-        z-index: 2;
-        pointer-events: auto;
-      }
-  
-      .course-bg-blur {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: var(--bg-img);
-        background-size: cover;
-        background-position: center;
-        filter: blur(16px) brightness(0.9);
-        opacity: 0.25;
-        z-index: 0;
-        border-radius: 2rem;
-      }
-  
-      .course-image {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: 1rem;
-        z-index: 1;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-  
-      .course-title {
-        font-size: 1.8rem;
-        font-weight: bold;
-        color: #ecbb97;
-        margin: 1.2rem 0 0.6rem;
-        z-index: 1;
-      }
-  
-      .course-description {
-        font-size: 1rem;
-        color: #6d5f56;
-        max-width: 600px;
-        z-index: 1;
-      }
-  
-      .course-button {
-        margin-top: 1.8rem;
-        background: #ecbb97;
-        color: white;
-        border: none;
-        padding: 0.8rem 2rem;
-        border-radius: 999px;
-        font-weight: bold;
-        cursor: pointer;
-        z-index: 1;
-        box-shadow: 0 4px 14px rgba(236, 187, 151, 0.5);
-        transition: transform 0.2s ease;
-  
-        &:hover {
-          transform: scale(1.05);
-        }
-      }
-    }
-  
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: #f6dcc2;
-      border: none;
-      border-radius: 50%;
-      font-size: 1.5rem;
-      padding: 0.7rem 1rem;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 10;
-  
-      &.prev {
-        left: 1rem;
-      }
-  
-      &.next {
-        right: 1rem;
-      }
-  
-      &:hover {
-        background: #eac2a0;
-      }
-    }
-  
-    .indicators {
-      margin-top: 2rem;
-      z-index: 10;
-  
-      .dot {
-        height: 10px;
-        width: 10px;
-        margin: 0 6px;
-        background-color: #f6dcc2;
-        border-radius: 50%;
-        display: inline-block;
-        transition: background-color 0.3s ease;
-  
-        &.active {
-          background-color: #ecbb97;
-        }
-      }
-    }
-  
-    .cta {
-      margin-top: 3rem;
-  
-      .cta-button {
-        background: #ecbb97;
-        color: white;
-        border: none;
-        padding: 1rem 2.2rem;
-        border-radius: 999px;
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
-        box-shadow: 0 4px 14px rgba(236, 187, 151, 0.5);
-        transition: background 0.3s ease, transform 0.2s ease;
-  
-        &:hover {
-          transform: scale(1.05);
-        }
-      }
+      height: 100%;
+      // Gradiente escuro para melhorar o contraste do texto
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
     }
   }
-  
+
+  .card-badge {
+    position: absolute;
+    top: 1rem; // Posição do badge
+    right: 1rem;
+    background-color: $original-badge-popular-bg; // Cor de fundo do badge
+    color: $original-badge-popular-text; // Cor do texto do badge
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+    z-index: 10; // Para ficar acima da imagem e overlay
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); // Sombra sutil para o badge
+
+    &.Novidade { // Exemplo de como estilizar badges específicos, se necessário
+      background-color: $original-badge-new-bg;
+      color: $original-badge-new-text;
+    }
+  }
+
+  .card-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; // Permite que o conteúdo ocupe o espaço restante
+  }
+
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: $original-primary-text-color; // Cor do título do card
+  }
+
+  .card-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: $text-color; // Cor da descrição do card
+    flex-grow: 1; // Faz a descrição ocupar o espaço, empurrando o botão para baixo
+  }
+
+  .btn-primary-custom {
+    background-color: $original-button-bg; // Cor do botão "Quero me inscrever"
+    border: none;
+    padding: 0.8rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    width: 100%;
+    color: $original-button-text-color; // Cor do texto do botão
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($original-button-bg, 10%); // Escurece no hover
+    }
+  }
+}
+
+/* Controles do Carrossel */
+.carousel-controls {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.5rem; // Padding para os botões não ficarem colados nas bordas
+  z-index: 20; // Garante que os botões fiquem acima dos cards
+
+  .btn-carousel-control {
+    background-color: white !important;
+    color: $original-primary-text-color !important; // Cor dos ícones do botão
+    border-radius: 50% !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    width: 50px !important;
+    height: 50px !important;
+    font-size: 1.5rem; // Tamanho do ícone de seta
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $original-primary-text-color !important;
+      color: white !important;
+    }
+  }
+}
+
+/* Pontos indicadores */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; // Espaçamento acima dos pontos
+  gap: 0.75rem;
+
+  span {
+    width: 12px; // Tamanho menor
+    height: 12px;
+    background-color: rgba($original-primary-text-color, 0.3); // Cor dos pontos inativos
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    &:hover {
+      background-color: rgba($original-primary-text-color, 0.6);
+      transform: scale(1.1);
+    }
+
+    &.active {
+      background-color: $original-primary-text-color; // Cor do ponto ativo
+      transform: scale(1.2); // Levemente maior
+    }
+  }
+}
+
+/* Botão "Garanta sua vaga agora!" */
+.btn-inscricao {
+  background-color: $original-button-bg; // Usando a mesma cor do botão do card
+  color: $original-button-text-color;
+  padding: 1rem 2.5rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 0.75rem;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: darken($original-button-bg, 10%);
+    transform: translateY(-3px);
+  }
+}
+
+
+/* Responsivo */
+@media (max-width: 992px) { // Para tablets, exibe 2 cards por vez
+  .course-card {
+    flex: 0 0 calc(50% - 1rem); // 2 cards por linha
+    min-width: unset; // Deixa o flexbox controlar
+  }
+  .carousel-controls {
+    padding: 0 0.2rem;
+  }
+}
+
+@media (max-width: 768px) { // Para celulares, exibe 1 card por vez
+  .container {
+    padding: 3rem 1rem;
+  }
+
+  .page-title {
+    font-size: 2.2rem;
+  }
+
+  .page-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .course-carousel-wrapper {
+    padding: 0.5rem; // Menos padding
+  }
+
+  .course-carousel {
+    gap: 1rem; // Menor gap
+    padding: 0 0.5rem;
+  }
+
+  .course-card {
+    flex: 0 0 100%; // 1 card por linha
+    min-height: 400px;
+    .card-image-container {
+      height: 180px; // Altura da imagem um pouco menor
+    }
+    .card-content {
+      padding: 1rem;
+    }
+    .card-title {
+      font-size: 1.3rem;
+    }
+    .card-description {
+      font-size: 0.9rem;
+    }
+  }
+
+  .carousel-controls {
+    .btn-carousel-control {
+      width: 40px !important;
+      height: 40px !important;
+      font-size: 1.2rem;
+    }
+  }
+
+  .carousel-dots {
+    margin-top: 1.5rem;
+    span {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .btn-inscricao {
+    padding: 0.8rem 2rem;
+    font-size: 1.1rem;
+  }
+}

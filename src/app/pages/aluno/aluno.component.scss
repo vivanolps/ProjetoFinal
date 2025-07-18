@@ -1,69 +1,164 @@
-@import '../../../styles.scss';
+// aluno.component.scss
+
+// Definindo as variáveis de cor com base na sua imagem original
+// POR FAVOR, ajuste esses valores de HEX se você tiver os exatos da sua paleta!
+$original-primary-text-color: #A0522D; // Um marrom escuro para textos principais
+$original-light-bg: #FDF9F6; // O bege bem claro de fundo
+$original-card-bg: #FFFFFF; // Branco para o fundo dos cards
+$original-progress-fill: #D2B48C; // O laranja/cobre da barra de progresso preenchida
+$original-button-bg: #D2B48C; // O laranja claro para o botão "Continuar Curso"
+$original-button-border: #D2B48C; // Borda do botão
+$original-completed-button-bg: #5cb85c; // Um verde padrão para "Concluído" (se for o que você usou)
+$original-completed-button-border: #5cb85c;
+$original-text-muted: #6c757d; // Cinza padrão do Bootstrap para texto muted
+
+@import '../../../styles.scss'; // Mantém o import do seu styles.scss global (onde podem estar outras configurações)
+
 
 .container {
   max-width: 1200px;
-  padding-top: 2rem;
-  padding-bottom: 3rem;
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+  background-color: $original-light-bg; // Usando a cor de fundo original
+  border-radius: 10px;
 }
 
 /* Cabeçalho */
 h1 {
-  color: $primary-color;
+  color: $original-primary-text-color; // Cor do texto principal (Bem-vinda)
   font-weight: 700;
-  font-size: 2rem;
+  font-size: 2.5rem;
+  margin-bottom: 0;
 }
 
-/* Cards principais */
+h2 {
+  color: $original-primary-text-color; // Cor dos títulos de seção (Meus Cursos, Recursos)
+  font-weight: 600;
+  font-size: 1.8rem;
+  margin-bottom: 2.5rem;
+}
+
+/* Botão de notificação (Sino) */
+.btn-outline-secondary {
+  // Mantém a cor original do Bootstrap ou definida no seu styles.scss
+  border-color: rgba($original-primary-text-color, 0.2); // Borda suave baseada na cor do texto
+  color: $original-primary-text-color; // Cor do ícone
+
+  &:hover {
+    background-color: rgba($original-primary-text-color, 0.05); // Fundo suave ao hover
+    border-color: rgba($original-primary-text-color, 0.3);
+  }
+}
+
+.badge.bg-danger {
+  font-size: 0.7rem;
+  padding: 0.3em 0.5em;
+  background-color: #dc3545 !important; // Mantém o vermelho padrão do Bootstrap para perigo
+  border-radius: 50%;
+  min-width: 1.5em;
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Cards em geral */
 .card {
   transition: all 0.3s ease;
-  border-radius: 12px;
-  border: none;
+  border-radius: 0.75rem;
+  border: none; // Sem borda explícita, a sombra fará o contorno
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); // Sombra que simula a borda e profundidade
+  background-color: $original-card-bg; // Fundo branco para os cards
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  &-primary-bg {
-    background-color: lighten($primary-color, 45%);
-    border-left: 4px solid $primary-color;
-    
-    .btn-primary {
-      background-color: $primary-color;
-      border-color: $primary-color;
-    }
-  }
-
-  &-accent-bg {
-    background-color: lighten($accent-color, 35%);
-    border-left: 4px solid $accent-color;
-    
-    .btn-accent {
-      background-color: $accent-color;
-      border-color: $accent-color;
-      color: darken($accent-color, 40%);
-    }
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
   }
 }
 
 /* Cards de cursos */
 .curso-card {
-  .curso-header {
+  .card-body {
+    padding: 1.5rem;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    .badge {
-      font-size: 0.7rem;
-      padding: 0.35em 0.65em;
+    flex-direction: column;
+  }
+
+  .card-title {
+    color: $original-primary-text-color; // Cor do título do curso
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .progress.custom-progress {
+    height: 0.7rem;
+    border-radius: 0.5rem;
+    background-color: lighten($original-progress-fill, 20%); // Fundo da barra, mais claro que o preenchido
+    overflow: hidden;
+
+    .progress-bar {
+      background-color: $original-progress-fill; // Cor da barra de progresso preenchida
+      border-radius: 0.5rem;
+      transition: width 0.6s ease-in-out;
     }
   }
 
-  .progress-bar {
-    background-color: $primary-color;
-    transition: width 0.6s ease;
+  p {
+    &.text-end {
+      color: $original-text-muted; // Cor para o progresso
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &.text-muted {
+      color: $original-text-muted; // Cor para o texto da última aula
+      font-size: 0.95rem;
+      .bi {
+        vertical-align: middle;
+        font-size: 1.1rem;
+        color: $original-primary-text-color; // Cor do ícone da aula
+      }
+    }
+  }
+
+  // Novo estilo para o botão principal "Continuar Curso"
+  .btn-primary-custom {
+    background-color: $original-button-bg;
+    border-color: $original-button-border;
+    color: white; // Ou a cor do texto que você usava no botão original
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    margin-top: auto;
+
+    &:hover {
+      background-color: darken($original-button-bg, 10%);
+      border-color: darken($original-button-border, 10%);
+    }
+  }
+
+  // Novo estilo para o botão "Concluído"
+  .btn-success-custom {
+    background-color: $original-completed-button-bg;
+    border-color: $original-completed-button-border;
+    color: white; // Cor do texto do botão concluído
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.5rem;
+    cursor: not-allowed;
+    margin-top: auto;
+
+    &:disabled {
+      opacity: 0.7;
+      background-color: lighten($original-completed-button-bg, 15%);
+      border-color: lighten($original-completed-button-border, 15%);
+    }
   }
 }
 
@@ -71,76 +166,71 @@ h1 {
 .recurso-card {
   padding: 1.5rem;
   transition: all 0.3s ease;
-  
+  background-color: $original-card-bg;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+
   &:hover {
-    background-color: rgba($primary-color, 0.05);
-    transform: translateY(-3px);
+    background-color: lighten($original-light-bg, 2%); // Fundo levemente acentuado ao hover, usando o tom de fundo geral
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
   .recurso-icone {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 3rem;
+    margin-bottom: 0.75rem;
+    color: $original-primary-text-color; // Cor do ícone de recurso
   }
 
   .recurso-titulo {
-    color: $primary-color;
+    color: $original-primary-text-color; // Cor do título do recurso
     font-weight: 600;
+    font-size: 1rem;
   }
 }
 
-/* Botão de notificação */
-.btn-outline-secondary {
-  border-color: rgba($primary-color, 0.2);
-  
-  &:hover {
-    background-color: rgba($primary-color, 0.05);
-  }
-}
-
-.badge.bg-danger {
-  font-size: 0.7rem;
-  padding: 0.35em 0.5em;
-}
-
-/* Animações */
+/* Animações e Responsividade (mantidos como antes) */
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Loading */
-.spinner-border {
-  width: 3rem;
-  height: 3rem;
-  border-width: 0.2em;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.py-5 {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-.py-4 {
-  padding-top: 1.5rem;
-  padding-bottom: 1.5rem;
-}
-
-/* Responsividade */
 @media (max-width: 768px) {
   .container {
-    padding-top: 1rem;
-    padding-bottom: 2rem;
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
   }
-  
+
   h1 {
-    font-size: 1.75rem;
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .recurso-card {
+    padding: 1rem;
+    .recurso-icone {
+      font-size: 2.5rem;
+    }
+  }
+}
+
+.text-decoration-none {
+  &:focus,
+  &:hover,
+  &:active {
+    outline: none;
+    box-shadow: none;
   }
 }
