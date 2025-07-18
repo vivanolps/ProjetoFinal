@@ -1,52 +1,146 @@
-// src/app/pages/aluno/aluno.component.scss
-
-@import '../../../styles.scss'; // Importe os estilos globais para usar as variáveis
+@import '../../../styles.scss';
 
 .container {
-  // Ajustes de espaçamento ou alinhamento se precisar
+  max-width: 1200px;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 
+/* Cabeçalho */
 h1 {
-  color: $primary-color; // Garante que o H1 da página siga a paleta
-  margin-bottom: 2rem;
+  color: $primary-color;
+  font-weight: 700;
+  font-size: 2rem;
 }
 
+/* Cards principais */
 .card {
-  border-radius: 0.75rem; // Arredondar as bordas dos cards
-  overflow: hidden; // Garante que o conteúdo não vaze em bordas arredondadas
-  // Adicione a transição para efeitos de hover nos cards
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &.card-primary-bg { // Classe para o card com primary-color
-    background-color: $secondary-color;
-    border: 1px solid lighten($text-color, 30%); // Borda suave
-    color: $text-color; // Texto interno do card
-  }
-
-  &.card-accent-bg { // Classe para o card com accent-color
-    background-color: $accent-color;
-    border: 1px solid lighten($accent-color, 10%); // Borda suave
-    color: darken($accent-color, 40%); // Cor do texto mais escura para contraste
-  }
-
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  border: none;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  
   &:hover {
-    transform: translateY(-5px); // Efeito de elevação no hover
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); // Sombra mais proeminente
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
-  .card-title {
-    color: $primary-color; // Título do card com a cor primária
-    font-weight: 600;
-  }
-
-  .btn-outline-dark { // Ajusta a cor do botão outline para sua paleta
-    color: $text-color;
-    border-color: $text-color;
-
-    &:hover {
+  &-primary-bg {
+    background-color: lighten($primary-color, 45%);
+    border-left: 4px solid $primary-color;
+    
+    .btn-primary {
       background-color: $primary-color;
-      color: white; // Cor do texto do botão no hover
       border-color: $primary-color;
     }
+  }
+
+  &-accent-bg {
+    background-color: lighten($accent-color, 35%);
+    border-left: 4px solid $accent-color;
+    
+    .btn-accent {
+      background-color: $accent-color;
+      border-color: $accent-color;
+      color: darken($accent-color, 40%);
+    }
+  }
+}
+
+/* Cards de cursos */
+.curso-card {
+  .curso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .badge {
+      font-size: 0.7rem;
+      padding: 0.35em 0.65em;
+    }
+  }
+
+  .progress-bar {
+    background-color: $primary-color;
+    transition: width 0.6s ease;
+  }
+}
+
+/* Cards de recursos */
+.recurso-card {
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.05);
+    transform: translateY(-3px);
+  }
+
+  .recurso-icone {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recurso-titulo {
+    color: $primary-color;
+    font-weight: 600;
+  }
+}
+
+/* Botão de notificação */
+.btn-outline-secondary {
+  border-color: rgba($primary-color, 0.2);
+  
+  &:hover {
+    background-color: rgba($primary-color, 0.05);
+  }
+}
+
+.badge.bg-danger {
+  font-size: 0.7rem;
+  padding: 0.35em 0.5em;
+}
+
+/* Animações */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Loading */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.2em;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.py-5 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.py-4 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .container {
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
   }
 }

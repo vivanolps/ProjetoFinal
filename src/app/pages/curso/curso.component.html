@@ -1,44 +1,37 @@
-<div class="container py-5 fade-in">
-    <div class="text-center mb-5">
-      <h1 class="page-title">Nossos Cursos</h1>
-      <p class="page-description lead">Transforme sua carreira com certificações reconhecidas</p>
-    </div>
+<section class="cursos-section">
+    <h2 class="section-title">Nossos Cursos</h2>
+    <p class="section-subtitle">Transforme sua carreira com certificações reconhecidas</p>
   
-    <div class="course-carousel-wrapper fade-in fade-in-delay-1"
-         (mouseenter)="pauseAutoPlay()" 
-         (mouseleave)="startAutoPlay()">
-      
-      <div class="course-carousel" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
-        <div class="course-card" *ngFor="let curso of cursos">
-          <div class="card-badge" *ngIf="curso.badge">{{ curso.badge }}</div>
-          <div class="card-icon">
-            <img [src]="curso.imagem" [alt]="curso.titulo">
-          </div>
-          <div class="card-content">
-            <h3 class="card-title">{{ curso.titulo }}</h3>
-            <p class="card-description">{{ curso.descricao }}</p>
-            <button class="btn btn-primary-custom" routerLink="/cadastro">
-              Quero me inscrever
-            </button>
-          </div>
-        </div>
+    <div class="carousel-container">
+      <div
+        class="course-card carousel-slide"
+        *ngFor="let curso of cursos; let i = index"
+        [class.active]="isCurrentCourse(i)"
+        [style.--bg-img]="'url(' + curso.imagem + ')'"
+      >
+        <div class="course-bg-blur"></div>
+  
+        <img [src]="curso.imagem" alt="Imagem do curso" class="course-image" />
+        <h3 class="course-title">{{ curso.titulo }}</h3>
+        <p class="course-description">{{ curso.descricao }}</p>
+        <button class="course-button">Quero me inscrever</button>
       </div>
   
-      <div class="carousel-controls">
-        <button (click)="prevCourse()" class="btn-carousel-control prev-btn">&#10094;</button>
-        <button (click)="nextCourse()" class="btn-carousel-control next-btn">&#10095;</button>
-      </div>
+      <button class="nav-button prev" (click)="prevSlide()">&#10094;</button>
+      <button class="nav-button next" (click)="nextSlide()">&#10095;</button>
   
-      <div class="carousel-dots">
-        <span *ngFor="let curso of cursos; let i = index" 
-              [class.active]="i === currentIndex" 
-              (click)="goToCourse(i)"></span>
+      <div class="indicators">
+        <span
+          *ngFor="let curso of cursos; let i = index"
+          class="dot"
+          [class.active]="i === currentIndex"
+          (click)="goToSlide(i)"
+        ></span>
       </div>
     </div>
   
-    <div class="text-center mt-5 fade-in fade-in-delay-2">
-      <a routerLink="/cadastro" class="btn btn-lg btn-inscricao">
-        Garanta sua vaga agora!
-      </a>
+    <div class="cta">
+      <button class="cta-button">Garanta sua vaga agora!</button>
     </div>
-  </div>
+  </section>
+  
