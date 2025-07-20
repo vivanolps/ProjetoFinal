@@ -1,1 +1,13 @@
-<p>login works!</p>
+<div class="login-container fade-in">
+  <h2>Bem-vinda de volta!</h2>
+  <p>Acesse sua área exclusiva de aluna</p>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <input type="email" placeholder="E-mail" required [(ngModel)]="email" name="email" />
+    <input type="password" placeholder="Senha" required [(ngModel)]="password" name="password" />
+
+    <button type="submit" [disabled]="!loginForm.valid">Entrar</button>
+  </form>
+
+  <p class="login-message" *ngIf="loginError">{{ loginError }}</p>
+</div>
