@@ -13,29 +13,29 @@ export class CursoComponent implements OnInit, OnDestroy {
   cursos = [
     {
       titulo: "Limpeza de Pele Profissional",
-      descricao: "Domine técnicas avançadas para acne, oleosidade e rejuvenescimento com certificação internacional.",
+      descricao: "Aprenda as técnicas mais eficazes de limpeza de pele e inicie sua carreira na estética com segurança e profissionalismo. Neste curso, você será capacitado(a) para realizar atendimentos com excelência, entendendo a fundo os tipos de pele, os produtos indicados, protocolos de higienização e extração de impurezas, além de cuidados pré e pós-procedimento. Certificado incluso, com conteúdo atualizado e baseado em estudos confiáveis.",
       imagem: "assets/images/spar.jpeg",
       badge: "Mais Procurado!"
     },
     {
       titulo: "Design de Sobrancelhas com Henna",
-      descricao: "Aprenda o método perfeito para formatos que realçam o rosto + curso de henna inclusivo.",
+      descricao: "Transforme olhares com técnicas profissionais de design de sobrancelhas e aplicação de henna. Neste curso completo, você aprenderá a modelar sobrancelhas com precisão, respeitando o formato do rosto, e a utilizar a henna de forma segura e duradoura para realçar a beleza natural de cada cliente. Certificado incluso, com conteúdo atualizado e baseado em estudos confiáveis.",
       imagem: "assets/images/sombrancelha.jpeg"
     },
     {
       titulo: "Massagem Relaxante com Pedras Quentes",
-      descricao: "Técnicas termais para alívio imediato de estresse e dores musculares (inclui kit básico).",
+      descricao: "Aprenda uma das técnicas mais procuradas nos spas e centros de bem-estar! A massagem com pedras quentes combina o toque terapêutico da massagem relaxante com o poder do calor para aliviar tensões, melhorar a circulação e proporcionar equilíbrio físico e emocional. Certificado incluso, com conteúdo atualizado e baseado em estudos confiáveis.",
       imagem: "assets/images/massagem.jpeg",
       badge: "Novidade!"
     },
     {
       titulo: "Unhas de Gel do Básico ao Avançado",
-      descricao: "Alongamentos, reparos e nail art. Inclui módulo sobre durabilidade e saúde das unhas.",
+      descricao: "Domine a técnica de unhas em gel desde os fundamentos até os acabamentos profissionais mais modernos. Este curso completo é ideal para quem está começando na área da beleza ou deseja se especializar, oferecendo serviços de alto padrão e com resultados duradouros. Certificado incluso, com conteúdo atualizado e baseado em estudos confiáveis.",
       imagem: "assets/images/unhas.jpeg"
     },
     {
       titulo: "Skincare Científico",
-      descricao: "Rotinas personalizadas para cada tipo de pele: do anti-idade ao tratamento de melasma.",
+      descricao: "Entenda a ciência por trás dos cuidados com a pele e aprenda a montar rotinas de skincare personalizadas e eficazes. Neste curso, você vai além da estética, explorando ingredientes ativos, formulações e o funcionamento da pele com base em evidências científicas. Certificado incluso, com conteúdo atualizado e baseado em estudos confiáveis.",
       imagem: "assets/images/esteticacientifica.jpeg"
     }
   ];
