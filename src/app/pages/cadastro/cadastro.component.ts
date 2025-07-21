@@ -1,42 +1,48 @@
-// src/app/pages/cadastro/cadastro.component.ts
-
+// src/app/cadastro/cadastro.component.ts
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Para ngIf, ngClass etc.
-import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms'; // Importar módulos de formulário reativo
-import { RouterLink } from '@angular/router'; // Para o routerLink na política de privacidade
+import { CommonModule } from '@angular/common'; // Para *ngIf, *ngFor
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // IMPORTE ESTES
+import { RouterLink } from '@angular/router'; // Para o link da política de privacidade
 
 @Component({
   selector: 'app-cadastro',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink], // Adicionar ReactiveFormsModule e RouterLink
+  imports: [
+    CommonModule,
+    ReactiveFormsModule, // Adicione ReactiveFormsModule aqui
+    RouterLink // Para o link da política de privacidade
+  ],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.scss'
 })
-export class CadastroComponent implements OnInit { // Implementar OnInit para inicializar o formulário
-  cadastroForm!: FormGroup; // ! indica que será inicializado no ngOnInit
+export class CadastroComponent implements OnInit {
+  cadastroForm!: FormGroup; // Declaração do FormGroup
+
+  // Injetar FormBuilder no construtor
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.cadastroForm = new FormGroup({
-      nome: new FormControl('', Validators.required),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      telefone: new FormControl('', Validators.pattern(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/)), // Validação de telefone (exemplo básico)
-      lgpdConsent: new FormControl(false, Validators.requiredTrue) // Validação para o checkbox de LGPD
+    this.cadastroForm = this.fb.group({
+      nome: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      telefone: ['', [Validators.required, Validators.pattern(/^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/)]], // Exemplo com regex para (XX) XXXXX-XXXX
+      lgpdConsent: [false, Validators.requiredTrue] // Valida que o checkbox deve ser true
     });
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.cadastroForm.valid) {
-      console.log('Formulário enviado com sucesso!', this.cadastroForm.value);
-      // Aqui você enviaria os dados para um serviço/backend (simulado ou real)
-      alert('Cadastro realizado com sucesso! Em breve entraremos em contato.');
-      this.cadastroForm.reset(); // Limpa o formulário após o envio
-      // Opcional: reiniciar o estado do checkbox
+      console.log('Formulário de cadastro válido!', this.cadastroForm.value);
+      alert('Cadastro de interesse enviado com sucesso!'); // Feedback visual
+      this.cadastroForm.reset(); // Reseta os campos do formulário
+      // Opcional: garantir que o checkbox seja desmarcado ao resetar
       this.cadastroForm.get('lgpdConsent')?.setValue(false);
+
     } else {
-      console.log('Formulário inválido!');
-      // Marcar todos os campos como "touched" para exibir mensagens de erro
+      console.log('Formulário de cadastro inválido.');
       this.cadastroForm.markAllAsTouched();
-      alert('Por favor, preencha todos os campos obrigatórios corretamente e aceite a política de privacidade.');
     }
   }
+
+  get f() { return this.cadastroForm.controls; }
 }

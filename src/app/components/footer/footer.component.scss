@@ -1,4 +1,4 @@
-@use "sass:color"; // Adicione esta linha no topo, se ainda não tiver
+@use "sass:color"; 
 @import '../../../styles.scss';
 
 .footer {
@@ -6,7 +6,7 @@
   color: $text-color;
   padding: 3rem 0 0;
   position: relative; // Manter position relative para o footer
-  bottom: 0; // Isso não "cola" no final da tela por si só, é mais para contexto de layout
+  bottom: 0; 
   width: 100%;
 
   .footer-brand {
@@ -75,7 +75,7 @@
       i {
         width: 20px;
         color: $primary-color;
-        font-size: 1.1rem; // Ajusta tamanho do ícone de contato
+        font-size: 1.1rem; 
       }
     }
   }
@@ -100,7 +100,7 @@
     padding-top: 1.5rem;
     border-top: 1px solid color.adjust($text-color, $alpha: -0.9); // Usando color.adjust para transparência
     text-align: center;
-    padding-bottom: 1.5rem; // Adicionado padding inferior ao copyright para espaçamento
+    padding-bottom: 1.5rem; 
 
     small {
       font-size: 0.8rem;

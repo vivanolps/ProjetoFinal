@@ -1,75 +1,85 @@
 // aluno.component.scss
 
-// Definindo as variáveis de cor com base na sua imagem original
-// POR FAVOR, ajuste esses valores de HEX se você tiver os exatos da sua paleta!
-$original-primary-text-color: #A0522D; // Um marrom escuro para textos principais
-$original-light-bg: #FDF9F6; // O bege bem claro de fundo
-$original-card-bg: #FFFFFF; // Branco para o fundo dos cards
-$original-progress-fill: #D2B48C; // O laranja/cobre da barra de progresso preenchida
-$original-button-bg: #D2B48C; // O laranja claro para o botão "Continuar Curso"
-$original-button-border: #D2B48C; // Borda do botão
-$original-completed-button-bg: #5cb85c; // Um verde padrão para "Concluído" (se for o que você usou)
-$original-completed-button-border: #5cb85c;
-$original-text-muted: #6c757d; // Cinza padrão do Bootstrap para texto muted
+// Variáveis de Cor
+$primary-text-color: #A0522D; 
+$light-bg: #FDF9F6; 
+$card-bg: #FFFFFF; 
+$progress-fill: #D2B48C; 
+$button-bg: #D2B48C; 
+$button-border: #D2B48C; 
+$completed-button-bg: #5cb85c; 
+$completed-button-border: #5cb85c;
+$text-muted: #6c757d; 
 
-@import '../../../styles.scss'; // Mantém o import do seu styles.scss global (onde podem estar outras configurações)
+@import '../../../styles.scss';
 
-
+// Container principal da página do aluno
 .container {
   max-width: 1200px;
-  padding-top: 3rem;
-  padding-bottom: 4rem;
-  background-color: $original-light-bg; // Usando a cor de fundo original
+  padding: 3rem 1rem 4rem; 
+  background-color: $light-bg;
   border-radius: 10px;
 }
 
-/* Cabeçalho */
-h1 {
-  color: $original-primary-text-color; // Cor do texto principal (Bem-vinda)
-  font-weight: 700;
-  font-size: 2.5rem;
-  margin-bottom: 0;
+.d-flex.justify-content-between.align-items-center.mb-5 {
+  h1 {
+    color: $primary-text-color;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin: 0;
+  }
+
+  // Estilo para o botão de notificação (sino)
+  .btn-outline-secondary {
+    border-color: rgba($primary-text-color, 0.2);
+    color: $primary-text-color;
+
+    &:hover {
+      background-color: rgba($primary-text-color, 0.05);
+      border-color: rgba($primary-text-color, 0.3);
+    }
+  }
+
+  // Estilo para o badge de notificação
+  .badge.bg-danger {
+    font-size: 0.7rem;
+    padding: 0.3em 0.5em;
+    background-color: #dc3545 !important;
+    border-radius: 50%;
+    min-width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Estilo para o botão de Logout
+  .logout-button {
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+      box-shadow: 0 4px 8px rgba($primary-text-color, 0.2);
+    }
+  }
 }
 
+// Títulos de seção (Meus Cursos, Recursos)
 h2 {
-  color: $original-primary-text-color; // Cor dos títulos de seção (Meus Cursos, Recursos)
+  color: $primary-text-color;
   font-weight: 600;
   font-size: 1.8rem;
   margin-bottom: 2.5rem;
 }
 
-/* Botão de notificação (Sino) */
-.btn-outline-secondary {
-  // Mantém a cor original do Bootstrap ou definida no seu styles.scss
-  border-color: rgba($original-primary-text-color, 0.2); // Borda suave baseada na cor do texto
-  color: $original-primary-text-color; // Cor do ícone
-
-  &:hover {
-    background-color: rgba($original-primary-text-color, 0.05); // Fundo suave ao hover
-    border-color: rgba($original-primary-text-color, 0.3);
-  }
-}
-
-.badge.bg-danger {
-  font-size: 0.7rem;
-  padding: 0.3em 0.5em;
-  background-color: #dc3545 !important; // Mantém o vermelho padrão do Bootstrap para perigo
-  border-radius: 50%;
-  min-width: 1.5em;
-  height: 1.5em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Cards em geral */
+// Cards em geral
 .card {
   transition: all 0.3s ease;
   border-radius: 0.75rem;
-  border: none; // Sem borda explícita, a sombra fará o contorno
+  border: none;
   overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08); // Sombra que simula a borda e profundidade
-  background-color: $original-card-bg; // Fundo branco para os cards
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+  background-color: $card-bg;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -80,7 +90,7 @@ h2 {
   }
 }
 
-/* Cards de cursos */
+// Cards de cursos
 .curso-card {
   .card-body {
     padding: 1.5rem;
@@ -89,7 +99,7 @@ h2 {
   }
 
   .card-title {
-    color: $original-primary-text-color; // Cor do título do curso
+    color: $primary-text-color;
     font-weight: 600;
     font-size: 1.3rem;
     margin-bottom: 1rem;
@@ -98,11 +108,11 @@ h2 {
   .progress.custom-progress {
     height: 0.7rem;
     border-radius: 0.5rem;
-    background-color: lighten($original-progress-fill, 20%); // Fundo da barra, mais claro que o preenchido
+    background-color: lighten($progress-fill, 20%);
     overflow: hidden;
 
     .progress-bar {
-      background-color: $original-progress-fill; // Cor da barra de progresso preenchida
+      background-color: $progress-fill;
       border-radius: 0.5rem;
       transition: width 0.6s ease-in-out;
     }
@@ -110,27 +120,26 @@ h2 {
 
   p {
     &.text-end {
-      color: $original-text-muted; // Cor para o progresso
+      color: $text-muted;
       font-size: 0.9rem;
       margin-bottom: 0.5rem;
     }
 
     &.text-muted {
-      color: $original-text-muted; // Cor para o texto da última aula
+      color: $text-muted;
       font-size: 0.95rem;
       .bi {
         vertical-align: middle;
         font-size: 1.1rem;
-        color: $original-primary-text-color; // Cor do ícone da aula
+        color: $primary-text-color;
       }
     }
   }
 
-  // Novo estilo para o botão principal "Continuar Curso"
   .btn-primary-custom {
-    background-color: $original-button-bg;
-    border-color: $original-button-border;
-    color: white; // Ou a cor do texto que você usava no botão original
+    background-color: $button-bg;
+    border-color: $button-border;
+    color: white;
     font-weight: 500;
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
@@ -138,16 +147,15 @@ h2 {
     margin-top: auto;
 
     &:hover {
-      background-color: darken($original-button-bg, 10%);
-      border-color: darken($original-button-border, 10%);
+      background-color: darken($button-bg, 10%);
+      border-color: darken($button-border, 10%);
     }
   }
 
-  // Novo estilo para o botão "Concluído"
   .btn-success-custom {
-    background-color: $original-completed-button-bg;
-    border-color: $original-completed-button-border;
-    color: white; // Cor do texto do botão concluído
+    background-color: $completed-button-bg;
+    border-color: $completed-button-border;
+    color: white;
     font-weight: 500;
     padding: 0.6rem 1.2rem;
     border-radius: 0.5rem;
@@ -156,21 +164,20 @@ h2 {
 
     &:disabled {
       opacity: 0.7;
-      background-color: lighten($original-completed-button-bg, 15%);
-      border-color: lighten($original-completed-button-border, 15%);
+      background-color: lighten($completed-button-bg, 15%);
+      border-color: lighten($completed-button-border, 15%);
     }
   }
 }
 
-/* Cards de recursos */
 .recurso-card {
   padding: 1.5rem;
   transition: all 0.3s ease;
-  background-color: $original-card-bg;
+  background-color: $card-bg;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 
   &:hover {
-    background-color: lighten($original-light-bg, 2%); // Fundo levemente acentuado ao hover, usando o tom de fundo geral
+    background-color: lighten($light-bg, 2%);
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
@@ -178,17 +185,17 @@ h2 {
   .recurso-icone {
     font-size: 3rem;
     margin-bottom: 0.75rem;
-    color: $original-primary-text-color; // Cor do ícone de recurso
+    color: $primary-text-color;
   }
 
   .recurso-titulo {
-    color: $original-primary-text-color; // Cor do título do recurso
+    color: $primary-text-color;
     font-weight: 600;
     font-size: 1rem;
   }
 }
 
-/* Animações e Responsividade (mantidos como antes) */
+
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }

@@ -36,7 +36,7 @@ export class CursoComponent implements OnInit, OnDestroy {
     {
       titulo: "Skincare Científico",
       descricao: "Rotinas personalizadas para cada tipo de pele: do anti-idade ao tratamento de melasma.",
-      imagem: "assets/icons/skincare-icon.svg"
+      imagem: "assets/images/esteticacientifica.jpeg"
     }
   ];
 

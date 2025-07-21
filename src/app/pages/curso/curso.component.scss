@@ -1,331 +1,172 @@
-@use "sass:color";
-@import '../../../styles.scss';
-
-// Cores baseadas na sua paleta original
-// POR FAVOR, ajuste esses valores de HEX se você tiver os exatos da sua paleta!
-$original-primary-text-color: #A0522D;
-$original-light-bg: #FDF9F6;
-$original-card-bg: #FFFFFF;
-$original-progress-fill: #D2B48C;
-$original-button-bg: #D2B48C;
-$original-button-text-color: white;
-$original-badge-popular-bg: lighten($original-button-bg, 15%);
-$original-badge-popular-text: darken($original-primary-text-color, 5%);
-$original-badge-new-bg: #ADD8E6;
-$original-badge-new-text: #000080;
-
-$text-color: #6C757D;
-
 .container {
-  background-color: $original-light-bg;
-  min-height: calc(100vh - 120px);
-  padding: 5rem 2rem;
-  text-align: center;
+  background-color: #fff6f2;
 }
 
 .page-title {
-  color: $original-primary-text-color;
-  font-size: 2.8rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  color: #e7a77c;
 }
 
 .page-description {
-  color: $text-color;
-  font-size: 1.2rem;
-  max-width: 700px;
-  margin: 0 auto 3.5rem;
+  color: #444;
+  font-size: 1.1rem;
 }
 
-/* Carrossel - Ajustes para 1 card por vez e melhor espaçamento */
 .course-carousel-wrapper {
-  position: relative;
-  // Aumentei a largura máxima do wrapper para dar mais espaço ao card e aos controles laterais.
-  max-width: 760px; /* Ajustado para um pouco mais de espaço */
+  max-width: 960px;
   margin: 0 auto;
   overflow: hidden;
-  border-radius: 1.5rem;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
-  background: $original-card-bg;
-  // Adicionei um padding interno maior para afastar o conteúdo das bordas do wrapper
-  padding: 2.5rem; /* Aumentei o padding interno */
-  margin-bottom: 3rem; /* Espaçamento abaixo do carrossel para os dots ou próximo elemento */
+  position: relative;
+  border-radius: 16px;
+  padding-bottom: 60px; // espaço para os controles e dots
 }
 
 .course-carousel {
   display: flex;
-  transition: transform 0.5s ease-in-out;
-  height: auto;
-  padding: 0;
+  transition: transform 0.5s ease;
+  width: 100%;
 }
 
 .course-card {
   flex: 0 0 100%;
-  min-width: unset;
-  background: $original-card-bg;
-  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.card-image-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; // melhor ajuste para imagens completas
+  display: block;
+}
+
+.card-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #e7a77c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.card-content {
+  padding: 20px;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 480px;
-  position: relative;
-
-  .card-image-container {
-    width: 100%;
-    height: 220px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 1rem 1rem 0 0;
-
-    .card-img-top {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-    }
-
-    .image-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 50%);
-    }
-  }
-
-  .card-badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    background-color: $original-badge-popular-bg;
-    color: $original-badge-popular-text;
-    padding: 0.4rem 0.8rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    font-size: 0.85rem;
-    z-index: 10;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-
-    &.Novidade {
-      background-color: $original-badge-new-bg;
-      color: $original-badge-new-text;
-    }
-  }
-
-  .card-content {
-    padding: 1.8rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  .card-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: $original-primary-text-color;
-  }
-
-  .card-description {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    color: $text-color;
-    flex-grow: 1;
-  }
-
-  .btn-primary-custom {
-    $base-color: $original-button-bg;
-    $darker-color: darken($base-color, 15%);
-
-    background: linear-gradient(135deg, $base-color, $darker-color);
-    border: none;
-    padding: 0.9rem;
-    border-radius: 0.5rem;
-    font-weight: 600;
-    color: white;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-    width: 100%;
-    cursor: pointer;
-
-    &:hover {
-      background: linear-gradient(135deg, darken($base-color, 5%), darken($darker-color, 5%));
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-      transform: translateY(-2px);
-    }
-
-    &:active {
-      transform: translateY(0);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-  }
 }
 
-/* Controles do Carrossel */
+.card-title {
+  font-weight: 700;
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: #503c32;
+}
+
+.card-description {
+  color: #555;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.btn-primary-custom {
+  background-color: #efc3a0;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+  align-self: start;
+}
+
+.btn-primary-custom:hover {
+  background-color: #e7a77c;
+}
+
 .carousel-controls {
   position: absolute;
   top: 50%;
+  left: 0;
+  right: 0;
   transform: translateY(-50%);
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 0 0.5rem; /* Mantido para que as setas não fiquem coladas nas bordas do wrapper */
-  z-index: 20;
-
-  .btn-carousel-control {
-    background-color: white !important;
-    color: $original-primary-text-color !important;
-    border-radius: 50% !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
-    width: 50px !important;
-    height: 50px !important;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-
-    &:hover {
-      background-color: $original-primary-text-color !important;
-      color: white !important;
-    }
-  }
+  padding: 0 15px;
+  pointer-events: none;
+  z-index: 3;
 }
 
-/* Pontos indicadores */
+.btn-carousel-control {
+  background-color: #efc3a0;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background-color 0.3s;
+}
+
+.btn-carousel-control:hover {
+  background-color: #e7a77c;
+}
+
 .carousel-dots {
   display: flex;
   justify-content: center;
-  margin-top: 2rem; /* Este valor agora é somado ao margin-bottom do wrapper */
-  gap: 0.75rem;
-
-  span {
-    width: 12px;
-    height: 12px;
-    background-color: rgba($original-primary-text-color, 0.3);
-    border-radius: 50%;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-
-    &:hover {
-      background-color: rgba($original-primary-text-color, 0.6);
-      transform: scale(1.1);
-    }
-
-    &.active {
-      background-color: $original-primary-text-color;
-      transform: scale(1.2);
-    }
-  }
+  margin-top: 20px;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
 }
 
-/* Botão "Garanta sua vaga agora!" */
-.btn-inscricao {
-  $base-color: $original-button-bg;
-  $darker-color: darken($base-color, 15%);
-
-  background: linear-gradient(135deg, $base-color, $darker-color);
-  color: white;
-  padding: 1rem 2.5rem;
-  font-size: 1.3rem;
-  font-weight: 700;
-  border-radius: 0.75rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+.carousel-dots span {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  display: inline-block;
   cursor: pointer;
-
-  &:hover {
-    background: linear-gradient(135deg, darken($base-color, 5%), darken($darker-color, 5%));
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  }
-
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-  }
+  transition: background-color 0.3s;
 }
 
-
-/* Responsivo - agora sempre 1 card por vez */
-@media (max-width: 992px) {
-  .course-carousel-wrapper {
-    max-width: 90%; /* Ajustei para ser mais responsivo e não ficar muito estreito em tablets */
-    padding: 2rem; /* Reduzi o padding um pouco */
-  }
-  .course-card {
-    min-height: 460px;
-    .card-content {
-      padding: 1.5rem;
-    }
-    .card-title {
-      font-size: 1.6rem;
-    }
-    .card-description {
-      font-size: 1rem;
-    }
-  }
+.carousel-dots .active {
+  background-color: #e7a77c;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding: 3rem 1rem;
-  }
+.btn-inscricao {
+  background-color: #efc3a0;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
 
-  .page-title {
-    font-size: 2.2rem;
-  }
-
-  .page-description {
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-
-  .course-carousel-wrapper {
-    max-width: 95%; /* Quase total para mobile */
-    padding: 1.5rem; /* Ajuste para telas menores */
-  }
-
-  .course-card {
-    min-height: 420px;
-    .card-image-container {
-      height: 180px;
-    }
-    .card-content {
-      padding: 1rem;
-    }
-    .card-title {
-      font-size: 1.3rem;
-    }
-    .card-description {
-      font-size: 0.9rem;
-    }
-  }
-
-  .carousel-controls {
-    .btn-carousel-control {
-      width: 40px !important;
-      height: 40px !important;
-      font-size: 1.2rem;
-    }
-  }
-
-  .carousel-dots {
-    margin-top: 1.5rem;
-    span {
-      width: 10px;
-      height: 10px;
-    }
-  }
-
-  .btn-inscricao {
-    padding: 0.8rem 2rem;
-    font-size: 1.1rem;
-  }
+.btn-inscricao:hover {
+  background-color: #e7a77c;
 }

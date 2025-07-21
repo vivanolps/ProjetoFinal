@@ -1,6 +1,6 @@
 // src/app/components/navbar/navbar.component.ts
 import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router'; // Importar RouterLink e RouterLinkActive
+import { RouterLink, RouterLinkActive } from '@angular/router'; 
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +10,9 @@ import { RouterLink, RouterLinkActive } from '@angular/router'; // Importar Rout
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
-    isScrolled = false; //contrala o estado do scroll
+    isScrolled = false; 
 
-    //monitora o evento scroll do acbecalho
+   
     @HostListener ('window:scroll', [])
     onWindowScroll() {
       this.isScrolled = window.scrollY > 50;
