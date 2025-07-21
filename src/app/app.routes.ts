@@ -1,4 +1,4 @@
-// src/app/app.routes.ts
+// src/app/app.routes.ts (Volte para como estava antes, sem as rotas filhas para apostilas, webinars, etc.)
 
 import { Routes } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { AlunoComponent } from './pages/aluno/aluno.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { PoliticaPrivacidadeComponent } from './politica-privacidade/politica-privacidade.component'; // IMPORTANTE: Importe o componente da política aqui
+import { PoliticaPrivacidadeComponent } from './politica-privacidade/politica-privacidade.component';
 
 // Guard de autenticação
 import { authGuard } from './guards/auth.guard';
@@ -19,18 +19,13 @@ export const routes: Routes = [
   { path: 'curso', component: CursoComponent },
   { path: 'cadastro', component: CadastroComponent },
 
-  // Página de login ANTES da área do aluno
   { path: 'login', component: LoginComponent },
 
-  // Área protegida: só acessa se estiver autenticado
+  // A rota do aluno permanece simples, sem children
   { path: 'aluno', component: AlunoComponent, canActivate: [authGuard] },
 
-  // (Opcional) Dashboard ou outras páginas futuras
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'politica-privacidade', component: PoliticaPrivacidadeComponent },
 
-  // NOVA ROTA: Política de Privacidade
-  { path: 'politica-privacidade', component: PoliticaPrivacidadeComponent }, // Adicione esta linha!
-
-  // Redirecionamento padrão (DEVE SER A ÚLTIMA ROTA)
-  { path: '**', redirectTo: '' } // Redireciona para o HomeComponent se a rota não for encontrada
+  { path: '**', redirectTo: '' }
 ];

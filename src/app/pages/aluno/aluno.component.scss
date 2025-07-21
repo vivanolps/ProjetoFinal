@@ -182,6 +182,45 @@ h2 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   }
 
+  &.active-resource { 
+    border: 2px solid $primary-text-color; // Exemplo: borda na cor principal
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Sombra mais proeminente
+    transform: translateY(-3px); 
+    background-color: lighten($light-bg, 3%); // Mudar um pouco o fundo
+  }
+}
+
+.resource-display-area {
+  min-height: 300px; // Garante um mínimo de altura para o conteúdo
+  border: 1px dashed lighten($text-color, 30%); // Borda tracejada suave
+}
+
+// Estilos básicos para o conteúdo dentro da área de recursos
+.resource-display-area {
+  h3 {
+    color: $primary-text-color;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  p {
+    color: $text-color;
+    margin-bottom: 0.8rem;
+  }
+  .list-group-item {
+    border-color: lighten($text-color, 40%);
+    color: $text-color;
+    &:hover {
+      background-color: lighten($secondary-color, 2%);
+    }
+  }
+  .bi { // Para os ícones dentro da área de display
+    color: $primary-text-color;
+  }
+  a {
+    color: $primary-color;
+  }
+}
+
   .recurso-icone {
     font-size: 3rem;
     margin-bottom: 0.75rem;
@@ -193,8 +232,6 @@ h2 {
     font-weight: 600;
     font-size: 1rem;
   }
-}
-
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;

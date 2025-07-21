@@ -1,8 +1,9 @@
 <div class="container py-5">
   <div class="d-flex justify-content-between align-items-center mb-5">
     <h1 class="display-5 fw-bold">Bem-vinda, {{ nomeAluno }}</h1>
-    
-    <div class="d-flex align-items-center gap-3"> <button class="btn btn-outline-secondary position-relative rounded-circle p-2">
+
+    <div class="d-flex align-items-center gap-3">
+      <button class="btn btn-outline-secondary position-relative rounded-circle p-2" (click)="toggleNotificacoes()">
         <i class="bi bi-bell fs-4"></i>
         <span *ngIf="temCursosIncompletos()"
           class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm">
@@ -17,10 +18,23 @@
     </div>
   </div>
 
+  <div *ngIf="mostrarNotificacoes" class="alert alert-info mt-3" role="alert">
+    <strong>Notificações:</strong>
+    <p *ngIf="!temCursosIncompletos()">Nenhuma notificação nova no momento. Todos os seus cursos estão em dia!</p>
+    <ul *ngIf="temCursosIncompletos()">
+      <li *ngFor="let curso of cursosIncompletosLista()">
+        Você tem {{ 100 - curso.progresso }}% restante no curso de {{ curso.nome }}.
+        <a href="javascript:void(0)" (click)="irParaDetalheCurso(curso)" class="alert-link">Continuar</a>
+      </li>
+    </ul>
+    <button type="button" class="btn-close" aria-label="Close" (click)="toggleNotificacoes()"></button>
+  </div>
+
+
   <div class="mb-5">
     <h2 class="text-center mb-4">Meus Cursos</h2>
     <div class="row g-4 justify-content-center">
-      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let curso of cursos">
+      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let curso of cursos; let i = index">
         <div class="card h-100 curso-card shadow-sm border-0 rounded-4">
           <div class="card-body d-flex flex-column">
             <h3 class="card-title mb-3">
@@ -37,7 +51,7 @@
               <i class="bi bi-play-circle me-2"></i>Última Aula: {{ curso.ultimaAula }}
             </p>
             <div class="mt-auto">
-              <button *ngIf="!curso.completo" class="btn btn-primary-custom w-100">Continuar Curso</button>
+              <button *ngIf="!curso.completo" class="btn btn-primary-custom w-100" (click)="irParaDetalheCurso(curso)">Continuar Curso</button>
               <button *ngIf="curso.completo" class="btn btn-success-custom w-100" disabled>Concluído</button>
             </div>
           </div>
@@ -50,7 +64,9 @@
     <h2 class="text-center mb-4">Recursos</h2>
     <div class="row g-3 justify-content-center">
       <div class="col-6 col-sm-4 col-md-3 col-lg-2" *ngFor="let recurso of recursos">
-        <a [routerLink]="['/aluno', recurso.link]" class="text-decoration-none d-block">
+        <a href="javascript:void(0)" (click)="ativarRecurso(recurso.link)"
+           [class.active-resource]="recursoAtivo === recurso.link"
+           class="text-decoration-none d-block">
           <div class="card h-100 text-center p-3 hover-effect recurso-card shadow-sm border-0 rounded-4">
             <div class="display-3 mb-2 recurso-icone">
               <i class="{{ recurso.icone }}"></i>
@@ -63,4 +79,68 @@
       </div>
     </div>
   </div>
-</div>
+
+  <div class="mt-5 resource-display-area p-4 rounded-4 shadow-sm bg-white">
+
+    <div *ngIf="recursoAtivo === 'apostilas'">
+      <h3><i class="bi bi-file-earmark-text me-2"></i> Minhas Apostilas</h3>
+      <p>Aqui você encontra todos os materiais didáticos em formato PDF.</p>
+      <div class="list-group">
+        <a href="assets/apostila_estetica_facial.pdf" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center mb-2">
+          <i class="bi bi-file-earmark-pdf fs-4 me-3"></i>
+          <div>
+            <h5>Apostila Completa de Estética Facial</h5>
+            <small class="text-muted">PDF - 15MB</small>
+          </div>
+        </a>
+        <a href="assets/apostila_estetica_corporal.pdf" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center mb-2">
+          <i class="bi bi-file-earmark-pdf fs-4 me-3"></i>
+          <div>
+            <h5>Apostila de Massagem Modeladora</h5>
+            <small class="text-muted">PDF - 10MB</small>
+          </div>
+        </a>
+        <a href="assets/apostila_empreendedorismo.pdf" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center mb-2">
+            <i class="bi bi-file-earmark-pdf fs-4 me-3"></i>
+            <div>
+              <h5>Guia de Empreendedorismo para Esteticistas</h5>
+              <small class="text-muted">PDF - 8MB</small>
+            </div>
+          </a>
+      </div>
+      <p class="mt-4 text-muted">Clique em cada apostila para visualizar ou fazer o download.</p>
+    </div>
+
+    <div *ngIf="recursoAtivo === 'webinars'">
+      <h3><i class="bi bi-camera-video me-2"></i> Gravações de Webinars</h3>
+      <p>Acompanhe as gravações dos nossos webinars exclusivos.</p>
+      <ul class="list-group">
+          <li class="list-group-item">Webinar: Novas Tendências em Peelings Químicos (Assista no YouTube)</li>
+          <li class="list-group-item">Webinar: Gestão Financeira para Esteticistas Autônomos (Assista no YouTube)</li>
+      </ul>
+      <p class="mt-3 text-muted">Os links para os webinars são simulados aqui.</p>
+    </div>
+
+    <div *ngIf="recursoAtivo === 'forum'">
+      <h3><i class="bi bi-chat-dots me-2"></i> Fórum de Discussão</h3>
+      <p>Participe da nossa comunidade e tire suas dúvidas!</p>
+      <div class="card p-3 mb-2">
+          <p class="mb-1">**Dúvida:** Qual o melhor protetor solar pós-peeling?</p>
+          <small class="text-muted">Enviado por: Aluna 1</small>
+      </div>
+      <div class="card p-3">
+          <p class="mb-1">**Dúvida:** Dicas para atrair novos clientes.</p>
+          <small class="text-muted">Enviado por: Aluna 2</small>
+      </div>
+      <p class="mt-3 text-muted">O fórum é simulado. Em um site real, haveria funcionalidades de postagem.</p>
+    </div>
+
+    <div *ngIf="recursoAtivo === 'suporte'">
+      <h3><i class="bi bi-life-preserver me-2"></i> Suporte ao Aluno</h3>
+      <p>Precisa de ajuda? Entre em contato conosco:</p>
+      <p><strong>E-mail:</strong> <a href="mailto:suporte@evelynestetica.com">eve</a></p>
+      <p><strong>Telefone:</strong> (71) 99325-2668</p>
+      <p class="text-muted">Nosso horário de atendimento é de segunda a sexta, das 9h às 18h.</p>
+    </div>
+
+  </div> </div>
