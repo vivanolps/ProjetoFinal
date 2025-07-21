@@ -138,7 +138,10 @@
     <div *ngIf="recursoAtivo === 'suporte'">
       <h3><i class="bi bi-life-preserver me-2"></i> Suporte ao Aluno</h3>
       <p>Precisa de ajuda? Entre em contato conosco:</p>
-      <p><strong>E-mail:</strong> <a href="mailto:suporte@evelynestetica.com">eve</a></p>
+      <p>
+        <strong>E-mail:</strong>
+        <a [href]="'mailto:' + emailSuporte"> {{ emailSuporte }} </a>
+      </p>
       <p><strong>Telefone:</strong> (71) 99325-2668</p>
       <p class="text-muted">Nosso horário de atendimento é de segunda a sexta, das 9h às 18h.</p>
     </div>

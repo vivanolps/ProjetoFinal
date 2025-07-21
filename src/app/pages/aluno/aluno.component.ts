@@ -31,7 +31,8 @@ export class AlunoComponent implements OnInit {
   cursos: Curso[] = [];
   recursos: Recurso[] = [];
   mostrarNotificacoes: boolean = false;
-  recursoAtivo: string | null = null; // NOVO: Armazena qual recurso está ativo ('apostilas', 'webinars', etc.)
+  recursoAtivo: string | null = null; 
+  emailSuporte: string = 'suporte@evelynestetica.com'; 
 
   constructor(
     private authService: AuthService,
