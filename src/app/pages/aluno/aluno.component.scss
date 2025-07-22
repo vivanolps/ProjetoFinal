@@ -1,326 +1,103 @@
-// aluno.component.scss
-
-// Variáveis de Cor
-$primary-text-color: #A0522D; 
-$light-bg: #FDF9F6; 
-$card-bg: #FFFFFF; 
-$progress-fill: #D2B48C; 
-$button-bg: #D2B48C; 
-$button-border: #D2B48C; 
-$completed-button-bg: #5cb85c; 
-$completed-button-border: #5cb85c;
-$text-muted: #6c757d; 
-
-@import '../../../styles.scss';
-
-// Container principal da página do aluno
-.container {
-  max-width: 1200px;
-  padding: 3rem 1rem 4rem; 
-  background-color: $light-bg;
-  border-radius: 10px;
-}
-
-.d-flex.justify-content-between.align-items-center.mb-5 {
-  h1 {
-    color: $primary-text-color;
-    font-weight: 700;
-    font-size: 2.5rem;
-    margin: 0;
-  }
-
-  .btn-outline-secondary {
-    border-color: rgba($primary-text-color, 0.2);
-    color: $primary-text-color;
-
-    &:hover {
-      background-color: rgba($primary-text-color, 0.05);
-      border-color: rgba($primary-text-color, 0.3);
-    }
-  }
-
-  .badge.bg-danger {
-    font-size: 0.7rem;
-    padding: 0.3em 0.5em;
-    background-color: #dc3545 !important;
-    border-radius: 50%;
-    min-width: 1.5em;
-    height: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .logout-button {
-    font-weight: 600;
-    transition: all 0.2s ease-in-out;
-
-    &:hover {
-      box-shadow: 0 4px 8px rgba($primary-text-color, 0.2);
-    }
-  }
-}
-
-h2 {
-  color: $primary-text-color;
-  font-weight: 600;
-  font-size: 1.8rem;
-  margin-bottom: 2.5rem;
-}
-
-.card {
-  transition: all 0.3s ease;
-  border-radius: 0.75rem;
-  border: none;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
-  background-color: $card-bg;
-  height: 100%;
+.aluno-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding: 2rem;
+  background-color: #fefefe;
+  color: #4b3b2a;
 
-  &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-  }
-}
-
-.curso-card {
-  .card-body {
-    padding: 1.5rem;
+  .menu-lateral {
+    width: 220px;
     display: flex;
     flex-direction: column;
-  }
+    gap: 1rem;
+    margin-right: 2rem;
 
-  .card-title {
-    color: $primary-text-color;
-    font-weight: 600;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
+    button {
+      background: none;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      text-align: left;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: background-color 0.3s, border-color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
 
-  .progress.custom-progress {
-    height: 0.7rem;
-    border-radius: 0.5rem;
-    background-color: lighten($progress-fill, 20%);
-    overflow: hidden;
+      &:hover {
+        background-color: #f0e7e0;
+      }
 
-    .progress-bar {
-      background-color: $progress-fill;
-      border-radius: 0.5rem;
-      transition: width 0.6s ease-in-out;
-    }
-  }
-
-  p {
-    &.text-end {
-      color: $text-muted;
-      font-size: 0.9rem;
-      margin-bottom: 0.5rem;
-    }
-
-    &.text-muted {
-      color: $text-muted;
-      font-size: 0.95rem;
-      .bi {
-        vertical-align: middle;
-        font-size: 1.1rem;
-        color: $primary-text-color;
+      &.ativo {
+        background-color: #e8dcd3;
+        border-color: #d4b6a3;
+        font-weight: bold;
       }
     }
   }
 
-  .btn-primary-custom {
-    background-color: $button-bg;
-    border-color: $button-border;
-    color: white;
-    font-weight: 500;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-    margin-top: auto;
+  .conteudo {
+    flex: 1;
 
-    &:hover {
-      background-color: darken($button-bg, 10%);
-      border-color: darken($button-border, 10%);
+    h3 {
+      margin-bottom: 1rem;
+      color: #6b4e3d;
     }
-  }
 
-  .btn-success-custom {
-    background-color: $completed-button-bg;
-    border-color: $completed-button-border;
-    color: white;
-    font-weight: 500;
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.5rem;
-    cursor: not-allowed;
-    margin-top: auto;
-
-    &:disabled {
-      opacity: 0.7;
-      background-color: lighten($completed-button-bg, 15%);
-      border-color: lighten($completed-button-border, 15%);
+    .card {
+      background-color: #fff;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
     }
-  }
-}
 
-.recurso-card {
-  padding: 1.5rem;
-  transition: all 0.3s ease;
-  background-color: $card-bg;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    .form-group {
+      margin-bottom: 1rem;
 
-  &:hover {
-    background-color: lighten($light-bg, 2%);
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  }
+      label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 0.3rem;
+      }
 
-  &.active-resource { 
-    border: 2px solid $primary-text-color;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-    transform: translateY(-3px); 
-    background-color: lighten($light-bg, 3%);
-  }
-}
+      input,
+      select,
+      textarea {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #fff7f0;
+      }
 
-.resource-display-area {
-  min-height: 300px;
-  border: 1px dashed lighten($text-color, 30%);
-
-  h3 {
-    color: $primary-text-color;
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-  p {
-    color: $text-color;
-    margin-bottom: 0.8rem;
-  }
-  .list-group-item {
-    border-color: lighten($text-color, 40%);
-    color: $text-color;
-    &:hover {
-      background-color: lighten($secondary-color, 2%);
+      .invalido {
+        border-color: #d9534f;
+        background-color: #fff0f0;
+      }
     }
-  }
-  .bi {
-    color: $primary-text-color;
-  }
-  a {
-    color: $primary-color;
-  }
-}
 
-.recurso-icone {
-  font-size: 3rem;
-  margin-bottom: 0.75rem;
-  color: $primary-text-color;
-}
+    button[type='submit'] {
+      padding: 0.7rem 1.4rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #b89476;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
 
-.recurso-titulo {
-  color: $primary-text-color;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding-top: 1.5rem;
-    padding-bottom: 3rem;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
-  .recurso-card {
-    padding: 1rem;
-    .recurso-icone {
-      font-size: 2.5rem;
+      &:hover {
+        background-color: #a27858;
+      }
     }
-  }
-}
 
-.text-decoration-none {
-  &:focus,
-  &:hover,
-  &:active {
-    outline: none;
-    box-shadow: none;
-  }
-}
-
-// ==================================================
-// 🔽 NOVOS ESTILOS PARA O FORMULÁRIO DE SUPORTE
-// ==================================================
-
-.suporte-form {
-  background-color: $card-bg;
-  border: 1px solid lighten($primary-text-color, 50%);
-  border-radius: 12px;
-  padding: 2rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  margin-top: 1.5rem;
-
-  label {
-    font-weight: 600;
-    color: $primary-text-color;
-    margin-bottom: 0.5rem;
-  }
-
-  .form-control,
-  .form-select {
-    border-radius: 0.75rem;
-    border: 1px solid lighten($primary-text-color, 40%);
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
-    margin-bottom: 1rem;
-    background-color: $light-bg;
-    transition: all 0.3s ease;
-
-    &:focus {
-      border-color: $primary-text-color;
-      box-shadow: 0 0 0 0.15rem rgba($primary-text-color, 0.2);
-      background-color: white;
-    }
-  }
-
-  textarea.form-control {
-    resize: vertical;
-    min-height: 120px;
-  }
-
-  .btn-enviar {
-    background-color: $button-bg;
-    color: white;
-    font-weight: 600;
-    padding: 0.6rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease;
-
-    &:hover {
-      background-color: darken($button-bg, 10%);
+    .mensagem-sucesso {
+      margin-top: 1rem;
+      color: green;
+      font-weight: bold;
     }
   }
 }
