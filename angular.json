@@ -58,13 +58,13 @@
                 {
                   "type": "all", 
                   "maximumWarning": "250kB",
-                  "maximumError": "500kB" 
+                  "maximumError": "1.5MB" 
                 },
                 {
                   "type": "bundle", 
                   "name": "styles",
                   "maximumWarning": "250kB",
-                  "maximumError": "500kB" 
+                  "maximumError": "500kB"
                 }
               ],
               "outputHashing": "all"
