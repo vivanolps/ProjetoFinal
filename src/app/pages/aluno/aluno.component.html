@@ -1,149 +1,93 @@
-<div class="container py-5">
-  <div class="d-flex justify-content-between align-items-center mb-5">
-    <h1 class="display-5 fw-bold">Bem-vinda, {{ nomeAluno }}</h1>
+<div class="container py-4">
+  <h2 class="mb-4">Área do Aluno</h2>
 
-    <div class="d-flex align-items-center gap-3">
-      <button class="btn btn-outline-secondary position-relative rounded-circle p-2" (click)="toggleNotificacoes()">
-        <i class="bi bi-bell fs-4"></i>
-        <span *ngIf="temCursosIncompletos()"
-          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm">
-          {{ cursosIncompletosCount() }}
-          <span class="visually-hidden">cursos incompletos</span>
-        </span>
-      </button>
-
-      <button class="btn btn-outline-danger logout-button" (click)="logout()">
-        Sair
-      </button>
-    </div>
+  <div class="btn-group mb-4" role="group">
+    <button class="btn btn-outline-primary" (click)="ativarRecurso('cursos')">Cursos</button>
+    <button class="btn btn-outline-primary" (click)="ativarRecurso('apostilas')">Apostilas</button>
+    <button class="btn btn-outline-primary" (click)="ativarRecurso('webinars')">Webinars</button>
+    <button class="btn btn-outline-primary" (click)="ativarRecurso('forum')">Fórum</button>
+    <button class="btn btn-outline-primary" (click)="ativarRecurso('suporte')">Suporte</button>
   </div>
 
-  <div *ngIf="mostrarNotificacoes" class="alert alert-info mt-3" role="alert">
-    <strong>Notificações:</strong>
-    <p *ngIf="!temCursosIncompletos()">Nenhuma notificação nova no momento. Todos os seus cursos estão em dia!</p>
-    <ul *ngIf="temCursosIncompletos()">
-      <li *ngFor="let curso of cursosIncompletosLista()">
-        Você tem {{ 100 - curso.progresso }}% restante no curso de {{ curso.nome }}.
-        <a href="javascript:void(0)" (click)="irParaDetalheCurso(curso)" class="alert-link">Continuar</a>
-      </li>
+  <!-- Cursos -->
+  <div *ngIf="recursoAtivo === 'cursos'" class="card p-4 mb-3">
+    <h3><i class="bi bi-laptop me-2"></i>Meus Cursos</h3>
+    <p>Bem-vinda à sua jornada de aprendizado! Aqui você encontra todos os cursos disponíveis.</p>
+    <ul>
+      <li>Curso de Design de Sobrancelhas</li>
+      <li>Curso de Limpeza de Pele</li>
+      <li>Curso de Drenagem Linfática</li>
     </ul>
-    <button type="button" class="btn-close" aria-label="Close" (click)="toggleNotificacoes()"></button>
   </div>
 
-
-  <div class="mb-5">
-    <h2 class="text-center mb-4">Meus Cursos</h2>
-    <div class="row g-4 justify-content-center">
-      <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let curso of cursos; let i = index">
-        <div class="card h-100 curso-card shadow-sm border-0 rounded-4">
-          <div class="card-body d-flex flex-column">
-            <h3 class="card-title mb-3">
-              {{ curso.nome }}
-            </h3>
-            <div class="progress custom-progress mb-2">
-              <div class="progress-bar" role="progressbar" [style.width.%]="curso.progresso"
-                [attr.aria-valuenow]="curso.progresso" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <p class="text-end small text-muted mb-3">
-              {{ curso.progresso }}% completo
-            </p>
-            <p class="text-muted mb-4 mt-auto">
-              <i class="bi bi-play-circle me-2"></i>Última Aula: {{ curso.ultimaAula }}
-            </p>
-            <div class="mt-auto">
-              <button *ngIf="!curso.completo" class="btn btn-primary-custom w-100" (click)="irParaDetalheCurso(curso)">Continuar Curso</button>
-              <button *ngIf="curso.completo" class="btn btn-success-custom w-100" disabled>Concluído</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <!-- Apostilas -->
+  <div *ngIf="recursoAtivo === 'apostilas'" class="card p-4 mb-3">
+    <h3><i class="bi bi-file-earmark-pdf me-2"></i>Apostilas</h3>
+    <p>Baixe os materiais complementares dos seus cursos:</p>
+    <ul>
+      <li><a href="#">Apostila - Design de Sobrancelhas</a></li>
+      <li><a href="#">Apostila - Limpeza de Pele</a></li>
+    </ul>
   </div>
 
-  <div class="mt-5">
-    <h2 class="text-center mb-4">Recursos</h2>
-    <div class="row g-3 justify-content-center">
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2" *ngFor="let recurso of recursos">
-        <a href="javascript:void(0)" (click)="ativarRecurso(recurso.link)"
-           [class.active-resource]="recursoAtivo === recurso.link"
-           class="text-decoration-none d-block">
-          <div class="card h-100 text-center p-3 hover-effect recurso-card shadow-sm border-0 rounded-4">
-            <div class="display-3 mb-2 recurso-icone">
-              <i class="{{ recurso.icone }}"></i>
-            </div>
-            <h3 class="h6 recurso-titulo">
-              {{ recurso.nome }}
-            </h3>
-          </div>
-        </a>
-      </div>
-    </div>
+  <!-- Webinars -->
+  <div *ngIf="recursoAtivo === 'webinars'" class="card p-4 mb-3">
+    <h3><i class="bi bi-camera-video me-2"></i>Webinars Gravados</h3>
+    <p>Assista aos encontros com especialistas da área da beleza:</p>
+    <ul>
+      <li><a href="#">Webinar: Tendências 2024</a></li>
+      <li><a href="#">Webinar: Dicas para iniciantes</a></li>
+    </ul>
   </div>
 
-  <div class="mt-5 resource-display-area p-4 rounded-4 shadow-sm bg-white">
+  <!-- Fórum -->
+  <div *ngIf="recursoAtivo === 'forum'" class="card p-4 mb-3">
+    <h3><i class="bi bi-chat-dots me-2"></i>Fórum do Aluno</h3>
+    <p>Converse com outros alunos, compartilhe dúvidas e experiências.</p>
+    <p class="text-muted">* Recurso em breve!</p>
+  </div>
 
-    <div *ngIf="recursoAtivo === 'apostilas'">
-      <h3><i class="bi bi-file-earmark-text me-2"></i> Minhas Apostilas</h3>
-      <p>Aqui você encontra todos os materiais didáticos em formato PDF.</p>
-      <div class="list-group">
-        <a href="assets/apostila_estetica_facial.pdf" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center mb-2">
-          <i class="bi bi-file-earmark-pdf fs-4 me-3"></i>
-          <div>
-            <h5>Apostila Completa de Estética Facial</h5>
-            <small class="text-muted">PDF - 15MB</small>
-          </div>
-        </a>
-        <a href="assets/apostila_estetica_corporal.pdf" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center mb-2">
-          <i class="bi bi-file-earmark-pdf fs-4 me-3"></i>
-          <div>
-            <h5>Apostila de Massagem Modeladora</h5>
-            <small class="text-muted">PDF - 10MB</small>
-          </div>
-        </a>
-        <a href="assets/apostila_empreendedorismo.pdf" target="_blank" class="list-group-item list-group-item-action d-flex align-items-center mb-2">
-            <i class="bi bi-file-earmark-pdf fs-4 me-3"></i>
-            <div>
-              <h5>Guia de Empreendedorismo para Esteticistas</h5>
-              <small class="text-muted">PDF - 8MB</small>
-            </div>
-          </a>
+  <!-- Suporte -->
+  <div *ngIf="recursoAtivo === 'suporte'" class="card p-4 mb-3">
+    <h3><i class="bi bi-life-preserver me-2"></i>Suporte ao Aluno</h3>
+    <p>Precisa de ajuda? Preencha o formulário abaixo ou entre em contato:</p>
+    <p><strong>Email:</strong> <a [href]="'mailto:' + emailSuporte">{{ emailSuporte }}</a></p>
+    <p><strong>Telefone:</strong> (71) 99325-2668</p>
+
+    <form [formGroup]="suporteForm" (ngSubmit)="enviarFormularioSuporte()" class="mt-3">
+
+      <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" id="nome" formControlName="nome" class="form-control" [ngClass]="{'is-invalid': campoInvalido('nome')}">
+        <div *ngIf="campoInvalido('nome')" class="invalid-feedback">Nome é obrigatório.</div>
       </div>
-      <p class="mt-4 text-muted">Clique em cada apostila para visualizar ou fazer o download.</p>
-    </div>
 
-    <div *ngIf="recursoAtivo === 'webinars'">
-      <h3><i class="bi bi-camera-video me-2"></i> Gravações de Webinars</h3>
-      <p>Acompanhe as gravações dos nossos webinars exclusivos.</p>
-      <ul class="list-group">
-          <li class="list-group-item">Webinar: Novas Tendências em Peelings Químicos (Assista no YouTube)</li>
-          <li class="list-group-item">Webinar: Gestão Financeira para Esteticistas Autônomos (Assista no YouTube)</li>
-      </ul>
-      <p class="mt-3 text-muted">Os links para os webinars são simulados aqui.</p>
-    </div>
-
-    <div *ngIf="recursoAtivo === 'forum'">
-      <h3><i class="bi bi-chat-dots me-2"></i> Fórum de Discussão</h3>
-      <p>Participe da nossa comunidade e tire suas dúvidas!</p>
-      <div class="card p-3 mb-2">
-          <p class="mb-1">**Dúvida:** Qual o melhor protetor solar pós-peeling?</p>
-          <small class="text-muted">Enviado por: Aluna 1</small>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email" id="email" formControlName="email" class="form-control" [ngClass]="{'is-invalid': campoInvalido('email')}">
+        <div *ngIf="campoInvalido('email')" class="invalid-feedback">Insira um e-mail válido.</div>
       </div>
-      <div class="card p-3">
-          <p class="mb-1">**Dúvida:** Dicas para atrair novos clientes.</p>
-          <small class="text-muted">Enviado por: Aluna 2</small>
+
+      <div class="mb-3">
+        <label for="assunto" class="form-label">Assunto</label>
+        <select id="assunto" formControlName="assunto" class="form-select" [ngClass]="{'is-invalid': campoInvalido('assunto')}">
+          <option value="">Selecione um assunto</option>
+          <option value="problema_acesso">Problema de acesso</option>
+          <option value="duvida_curso">Dúvida sobre curso</option>
+          <option value="outro">Outro</option>
+        </select>
+        <div *ngIf="campoInvalido('assunto')" class="invalid-feedback">Escolha um assunto.</div>
       </div>
-      <p class="mt-3 text-muted">O fórum é simulado. Em um site real, haveria funcionalidades de postagem.</p>
-    </div>
 
-    <div *ngIf="recursoAtivo === 'suporte'">
-      <h3><i class="bi bi-life-preserver me-2"></i> Suporte ao Aluno</h3>
-      <p>Precisa de ajuda? Entre em contato conosco:</p>
-      <p>
-        <strong>E-mail:</strong>
-        <a [href]="'mailto:' + emailSuporte"> {{ emailSuporte }} </a>
-      </p>
-      <p><strong>Telefone:</strong> (71) 99325-2668</p>
-      <p class="text-muted">Nosso horário de atendimento é de segunda a sexta, das 9h às 18h.</p>
-    </div>
+      <div class="mb-3">
+        <label for="conteudo" class="form-label">Mensagem</label>
+        <textarea id="conteudo" formControlName="conteudo" class="form-control" rows="4" [ngClass]="{'is-invalid': campoInvalido('conteudo')}"></textarea>
+        <div *ngIf="campoInvalido('conteudo')" class="invalid-feedback">Descreva sua dúvida ou problema.</div>
+      </div>
 
-  </div> </div>
+      <button type="submit" class="btn btn-success">Enviar</button>
+
+      <div *ngIf="formEnviado" class="alert alert-success mt-3">Suporte enviado com sucesso!</div>
+    </form>
+  </div>
+</div>

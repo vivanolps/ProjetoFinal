@@ -10,6 +10,7 @@ import { AlunoComponent } from './pages/aluno/aluno.component';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { PoliticaPrivacidadeComponent } from './politica-privacidade/politica-privacidade.component';
+import { SuporteComponent } from './pages/aluno/suporte/suporte.component';
 
 // Guard de autenticação
 import { authGuard } from './guards/auth.guard';
@@ -18,14 +19,10 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'curso', component: CursoComponent },
   { path: 'cadastro', component: CadastroComponent },
-
   { path: 'login', component: LoginComponent },
-
-  // A rota do aluno permanece simples, sem children
   { path: 'aluno', component: AlunoComponent, canActivate: [authGuard] },
-
   { path: 'dashboard', component: DashboardComponent },
   { path: 'politica-privacidade', component: PoliticaPrivacidadeComponent },
-
+  { path: 'aluno/suporte', component: SuporteComponent, canActivate: [authGuard] },
   { path: '**', redirectTo: '' }
 ];

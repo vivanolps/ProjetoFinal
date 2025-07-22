@@ -29,7 +29,6 @@ $text-muted: #6c757d;
     margin: 0;
   }
 
-  // Estilo para o botão de notificação (sino)
   .btn-outline-secondary {
     border-color: rgba($primary-text-color, 0.2);
     color: $primary-text-color;
@@ -40,7 +39,6 @@ $text-muted: #6c757d;
     }
   }
 
-  // Estilo para o badge de notificação
   .badge.bg-danger {
     font-size: 0.7rem;
     padding: 0.3em 0.5em;
@@ -53,7 +51,6 @@ $text-muted: #6c757d;
     justify-content: center;
   }
 
-  // Estilo para o botão de Logout
   .logout-button {
     font-weight: 600;
     transition: all 0.2s ease-in-out;
@@ -64,7 +61,6 @@ $text-muted: #6c757d;
   }
 }
 
-// Títulos de seção (Meus Cursos, Recursos)
 h2 {
   color: $primary-text-color;
   font-weight: 600;
@@ -72,7 +68,6 @@ h2 {
   margin-bottom: 2.5rem;
 }
 
-// Cards em geral
 .card {
   transition: all 0.3s ease;
   border-radius: 0.75rem;
@@ -90,7 +85,6 @@ h2 {
   }
 }
 
-// Cards de cursos
 .curso-card {
   .card-body {
     padding: 1.5rem;
@@ -183,20 +177,17 @@ h2 {
   }
 
   &.active-resource { 
-    border: 2px solid $primary-text-color; // Exemplo: borda na cor principal
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); // Sombra mais proeminente
+    border: 2px solid $primary-text-color;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     transform: translateY(-3px); 
-    background-color: lighten($light-bg, 3%); // Mudar um pouco o fundo
+    background-color: lighten($light-bg, 3%);
   }
 }
 
 .resource-display-area {
-  min-height: 300px; // Garante um mínimo de altura para o conteúdo
-  border: 1px dashed lighten($text-color, 30%); // Borda tracejada suave
-}
+  min-height: 300px;
+  border: 1px dashed lighten($text-color, 30%);
 
-// Estilos básicos para o conteúdo dentro da área de recursos
-.resource-display-area {
   h3 {
     color: $primary-text-color;
     font-weight: 600;
@@ -213,7 +204,7 @@ h2 {
       background-color: lighten($secondary-color, 2%);
     }
   }
-  .bi { // Para os ícones dentro da área de display
+  .bi {
     color: $primary-text-color;
   }
   a {
@@ -221,17 +212,17 @@ h2 {
   }
 }
 
-  .recurso-icone {
-    font-size: 3rem;
-    margin-bottom: 0.75rem;
-    color: $primary-text-color;
-  }
+.recurso-icone {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+  color: $primary-text-color;
+}
 
-  .recurso-titulo {
-    color: $primary-text-color;
-    font-weight: 600;
-    font-size: 1rem;
-  }
+.recurso-titulo {
+  color: $primary-text-color;
+  font-weight: 600;
+  font-size: 1rem;
+}
 
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
@@ -276,5 +267,60 @@ h2 {
   &:active {
     outline: none;
     box-shadow: none;
+  }
+}
+
+// ==================================================
+// 🔽 NOVOS ESTILOS PARA O FORMULÁRIO DE SUPORTE
+// ==================================================
+
+.suporte-form {
+  background-color: $card-bg;
+  border: 1px solid lighten($primary-text-color, 50%);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 1.5rem;
+
+  label {
+    font-weight: 600;
+    color: $primary-text-color;
+    margin-bottom: 0.5rem;
+  }
+
+  .form-control,
+  .form-select {
+    border-radius: 0.75rem;
+    border: 1px solid lighten($primary-text-color, 40%);
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: $light-bg;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: $primary-text-color;
+      box-shadow: 0 0 0 0.15rem rgba($primary-text-color, 0.2);
+      background-color: white;
+    }
+  }
+
+  textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-enviar {
+    background-color: $button-bg;
+    color: white;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken($button-bg, 10%);
+    }
   }
 }
