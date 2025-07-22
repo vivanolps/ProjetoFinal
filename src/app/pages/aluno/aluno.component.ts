@@ -1,7 +1,9 @@
+// src/app/aluno/aluno.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.services';
+
 
 interface Curso {
   id: number;
@@ -14,7 +16,7 @@ interface Curso {
 interface Recurso {
   nome: string;
   icone: string;
-  link: string;
+  link: string; 
 }
 
 @Component({
@@ -29,8 +31,8 @@ export class AlunoComponent implements OnInit {
   cursos: Curso[] = [];
   recursos: Recurso[] = [];
   mostrarNotificacoes: boolean = false;
-  recursoAtivo: string | null = null;
-  emailSuporte: string = 'suporte@evelynestetica.com';
+  recursoAtivo: string | null = null; 
+  emailSuporte: string = 'suporte@evelynestetica.com'; 
 
   constructor(
     private authService: AuthService,
@@ -40,18 +42,22 @@ export class AlunoComponent implements OnInit {
 
   ngOnInit(): void {
     this.nomeAluno = 'Maria !';
+
     this.cursos = [
       { id: 1, nome: 'Estética Facial', progresso: 75, ultimaAula: 'Introdução aos Peelings', completo: false },
       { id: 2, nome: 'Estética Corporal', progresso: 100, ultimaAula: 'Massagem Modeladora', completo: true },
       { id: 3, nome: 'Empreendedorismo', progresso: 30, ultimaAula: 'Planejamento de Negócios', completo: false },
       { id: 4, nome: 'Limpeza de Pele Profissional', progresso: 50, ultimaAula: 'Extração de Cravos', completo: false }
     ];
+
     this.recursos = [
       { nome: 'Apostilas', icone: 'bi bi-file-earmark-text', link: 'apostilas' },
       { nome: 'Webinars', icone: 'bi bi-camera-video', link: 'webinars' },
       { nome: 'Fórum', icone: 'bi bi-chat-dots', link: 'forum' },
       { nome: 'Suporte', icone: 'bi bi-life-preserver', link: 'suporte' }
     ];
+    
+    this.recursoAtivo = 'apostilas'; 
   }
 
   temCursosIncompletos(): boolean {

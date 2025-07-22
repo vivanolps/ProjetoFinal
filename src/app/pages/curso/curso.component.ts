@@ -43,7 +43,7 @@ export class CursoComponent implements OnInit, OnDestroy {
   currentIndex = 0;
   autoPlay = true;
   private carouselInterval: any;
-  // itemsPerView: number = 1; // Não é mais necessário controlar dinamicamente, pois sempre é 1
+  
 
   ngOnInit() {
     if (this.autoPlay) {

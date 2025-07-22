@@ -1,45 +1,59 @@
 <div class="container py-5 fade-in">
-    <div class="text-center mb-5">
-      <h1 class="page-title">Nossos Cursos</h1>
-      <p class="page-description lead">Transforme sua carreira com certificações reconhecidas</p>
-    </div>
-  
-    <div class="course-carousel-wrapper fade-in fade-in-delay-1" (mouseenter)="pauseAutoPlay()"
-      (mouseleave)="startAutoPlay()">
-  
-      <div class="course-carousel" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
-        <div class="course-card carousel-slide" *ngFor="let curso of cursos; let i = index">
-          
-          <div class="card-image-container">
-            <img [src]="curso.imagem" [alt]="curso.titulo" class="card-img-top">
-            <div class="image-overlay"></div>
-          </div>
-  
-          <div class="card-badge" *ngIf="curso.badge">{{ curso.badge }}</div>
-          
-          <div class="card-content">
-            <h3 class="card-title">{{ curso.titulo }}</h3>
-            <p class="card-description">{{ curso.descricao }}</p>
-            <button class="btn btn-primary-custom" routerLink="/cadastro">
-              Quero me inscrever
-            </button>
-          </div>
+  <div class="text-center mb-5">
+    <h1 class="page-title">Nossos Cursos</h1>
+    <p class="page-description lead">Transforme sua carreira com certificações reconhecidas</p>
+  </div>
+
+  <div
+    class="course-carousel-wrapper fade-in fade-in-delay-1"
+    (mouseenter)="pauseAutoPlay()"
+    (mouseleave)="startAutoPlay()"
+  >
+    <div
+      class="course-carousel"
+      [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'"
+    >
+      <div class="course-card carousel-slide" *ngFor="let curso of cursos; let i = index">
+        <div class="card-image-container">
+          <img
+            [src]="curso.imagem"
+            [alt]="curso.titulo"
+            class="card-img-top"
+          />
+          <div class="image-overlay"></div>
+        </div>
+
+        <div class="card-badge" *ngIf="curso.badge">
+          {{ curso.badge }}
+        </div>
+
+        <div class="card-content">
+          <h3 class="card-title">{{ curso.titulo }}</h3>
+          <p class="card-description">{{ curso.descricao }}</p>
+          <a routerLink="/cadastro" class="btn btn-primary-custom">
+            Quero me inscrever
+          </a>
         </div>
       </div>
-  
-      <div class="carousel-controls">
-        <button (click)="prevCourse()" class="btn-carousel-control prev-btn">&#10094;</button>
-        <button (click)="nextCourse()" class="btn-carousel-control next-btn">&#10095;</button>
-      </div>
-  
-      <div class="carousel-dots">
-        <span *ngFor="let curso of cursos; let i = index" [class.active]="i === currentIndex" (click)="goToCourse(i)"></span>
-      </div>
     </div>
-  
-    <div class="text-center mt-5 fade-in fade-in-delay-2">
-      <a routerLink="/cadastro" class="btn btn-lg btn-inscricao">
-        Garanta sua vaga agora!
-      </a>
+
+    <div class="carousel-controls">
+      <button (click)="prevCourse()" class="btn-carousel-control prev-btn">&#10094;</button>
+      <button (click)="nextCourse()" class="btn-carousel-control next-btn">&#10095;</button>
+    </div>
+
+    <div class="carousel-dots">
+      <span
+        *ngFor="let curso of cursos; let i = index"
+        [class.active]="i === currentIndex"
+        (click)="goToCourse(i)"
+      ></span>
     </div>
   </div>
+
+  <div class="text-center mt-5 fade-in fade-in-delay-2">
+    <a routerLink="/cadastro" class="btn btn-lg btn-inscricao">
+      Garanta sua vaga agora!
+    </a>
+  </div>
+</div>

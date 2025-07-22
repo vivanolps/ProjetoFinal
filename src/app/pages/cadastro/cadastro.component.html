@@ -27,7 +27,7 @@
             <div class="form-check mb-4">
                 <input class="form-check-input" type="checkbox" id="lgpdConsent" formControlName="lgpdConsent">
                 <label class="form-check-label" for="flexCheckDefault">
-                    Eu concordo com a <a [routerLink]="['/politica-privacidade']" class="policy-link">Política de Privacidade</a> e autorizo o contato.
+                    Eu concordo com a <a [routerLink]="['/politica']" class="policy-link">Política de Privacidade</a> e autorizo o contato.
                 </label>
                 <div *ngIf="cadastroForm.get('lgpdConsent')?.invalid && (cadastroForm.get('lgpdConsent')?.dirty || cadastroForm.get('lgpdConsent')?.touched)" class="text-danger mt-1">
                     Você deve aceitar a política de privacidade.
